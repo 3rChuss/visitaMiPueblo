@@ -166,6 +166,9 @@ svg {
         margin-right: 0;
         top: 0;
     }
+    #loginBtn {
+        float: left !important;
+    }
 }
 @media (max-width: 380px){
     .submenu {
@@ -180,9 +183,13 @@ svg {
     margin-bottom: 0;
     font-size: 1.1rem;
 }
+.noticias-top {
+    height: 500px !important;
+}
 .noticias img {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 500px;
+    height: 300px;
     object-fit: cover;
     object-position: 100% 25%;
 }
@@ -316,11 +323,13 @@ article {
         max-height: 300px;
         display: flex;
     }
-
     .icono-tiempo {
         display: flex;
         align-items: center;
         overflow: hidden;
+    }
+    .icono-tiempo img {
+        margin-left: -25px;
     }
     .elTiempo .icono-tiempo {
         width: 300px;
@@ -338,7 +347,7 @@ article {
     .resumen-tiempo {
         display: flex;
         align-items: center;
-        margin-left: -35px;
+        margin-left: -45px;
     }
 
     .tempActual {
@@ -346,6 +355,7 @@ article {
         font-size: 32px;
         font-weight: 700;
         z-index: 1;
+        margin-left: -15px;
     }
     .parametros {
         position: relative;
@@ -355,8 +365,9 @@ article {
     }
     .texto {
         width: 100%;
-        padding: 0 1rem;
+        padding: 0 5px;
         z-index: 1;
+        font-size: 0.7rem;
     }
     .temps {
         padding: 0 1rem;
@@ -602,6 +613,9 @@ header .nav a {
 /* =========================================================== FOOTER */
 #loginForm {
     transition: opacity .5s ease-in;
+}
+#loginBtn{
+    float: right;
 }
 .form-control, .form-check-label {
     font-size: 0.6rem;

@@ -1,8 +1,12 @@
 section#login
     .row.align-item-center.mb-2
         .col
-            #loginBtn.float-right
-                button.btn.btn-sm.btn-light#btn-login Login
+            #loginBtn
+                if usuario
+                    span Bienvenido #{usuario.nombre}
+                else
+                    if ruta === '/'
+                        button.btn.btn-sm.btn-light#btn-login Login
             #loginForm.fadedfx
                 form.form-inline(action="/login", method="post", name="signin")
                     .form-group.col-12.justify-content-end

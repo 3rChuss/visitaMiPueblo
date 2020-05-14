@@ -10,15 +10,14 @@ auth.esPropietario = async (req, res, next) => {
             })
             .catch(err => console.log(err));
     }else{
-        res.redirect('/#login')
+        res.redirect('/login')
     }
 }
 
 auth.isLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated())
         return next();
-    }
-    res.redirect('/#login');
+    res.redirect('/');
 }
 
 

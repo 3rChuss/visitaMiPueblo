@@ -1,4 +1,6 @@
-const Post    = require('../models/Posts');
+const Post  = require('../models/Posts');
+const Users = require('../models/Users');
+
 exports.mostrarPosts = async (req, res) => {
     
     const entradas = await Post.findAll({
@@ -6,7 +8,7 @@ exports.mostrarPosts = async (req, res) => {
             ['id', 'DESC']
             ]
         })
-
+        
         let eventos = entradas.filter( entrada => entrada.es_evento == true);
             eventos.forEach(evento => {
                 let fechaEvento = new Date(evento.fecha_evento)
@@ -16,9 +18,21 @@ exports.mostrarPosts = async (req, res) => {
                 }
             }
         )
+
+    // Le decimos a Sequalize que las tablas tienen relacion
+    Users.belongsTo(Post, { foreignKey: 'id'});
+    //Buscamos el autor del post por el %id_autor%
+    const autor = await Users.findOne(
+        {
+            include: Post,
+            through: { attributes:['id_autor'] }
+        })
+
         res.render('index', {
             pagina: "Bienvenidos a Deifontes",
             entradas,
-            eventos
+            eventos,
+            autor: autor.nombre,
+            usuario: req.user
         })
 }

@@ -3,6 +3,9 @@ const   Sequelize   =   require('sequelize'),
 
 
 const   Post = db.define('_posts', {
+    id_autor: {
+        type: Sequelize.INTEGER
+    },
     titulo: {
         type: Sequelize.STRING
     },
@@ -23,9 +26,6 @@ const   Post = db.define('_posts', {
     },
     fecha_entrada: {
         type: Sequelize.DATE
-    },
-    autor: {
-        type: Sequelize.STRING
     }
 })
 

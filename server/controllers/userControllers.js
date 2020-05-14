@@ -22,12 +22,12 @@ exports.loginUsuario = (obj, done) => {
         return user;
 };
 
-exports.login = (req, res) => {
-    res.render('admin/login', 
-    {
-        pagina: 'Iniciar Sesion'
-    })
-}
+// exports.login = (req, res) => {
+//     res.render('admin/login', 
+//     {
+//         pagina: 'Iniciar Sesion'
+//     })
+// }
 
 exports.registrarUsuario = async (res, req, {nombre, email, passwd}) => {
     let hash = bcrypt.hashSync(passwd, salt);

@@ -6,7 +6,7 @@ block contenido
                 h1.slider-text= pagina
             .col-md-2.text-center#admin-btns
                 .col
-                    h3 Hola de nuevo #[span=nombre]
+                    h3 Hola de nuevo #[span=usuario.nombre]
                     h3 ¿Qué deseas hacer?
                     a.btn.btn-primary.p-3(href="/_admin?contenido=nuevo-post", class=(contenido === 'nuevo-post' ? 'active' : '')) Nueva noticia
                     a.btn.btn-primary.p-3(href="/_admin?contenido=panel-usuarios", class=(contenido === 'panel-usuarios' ? 'active' : '' )) Control de Usuarios

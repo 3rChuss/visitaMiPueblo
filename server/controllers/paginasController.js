@@ -3,7 +3,8 @@ const   path    = require('path'),
 
 exports.paginaDeifontes= (req, res) => {
     res.render('deifontes/info', {
-        pagina: 'Fuente de dios'
+        pagina: 'Fuente de dios',
+        usuario: req.user
     });
 }
 
@@ -16,30 +17,35 @@ exports.paginaID = (req, res) => {
             if (err) console.log(err)
             res.render('deifontes/'+req.params.pagina, {
                 pagina,
-                imagenes
+                imagenes,
+                usuario: req.user
             });
         })
     }else {
         res.render('deifontes/'+req.params.pagina, {
-            pagina
+            pagina,
+            usuario: req.user
         });
     }
 }
 
 exports.paginaQuever = (req, res) => {
     res.render('quever', {
-        pagina: 'Lo que deifontes esconde'
+        pagina: 'Lo que deifontes esconde',
+        usuario: req.user
     });
 }
 
 exports.paginaFiestas = (req, res) => {
     res.render('fiestas/', {
-        pagina: 'Fiestas y tradiciones'
+        pagina: 'Fiestas y tradiciones',
+        usuario: req.user
     })
 }
 
 exports.paginaIDFiesta = (req, res) => {
     res.render('fiestas/'+req.params.pagina, {
-        pagina: 'Fiestas y tradiciones'
+        pagina: 'Fiestas y tradiciones',
+        usuario: req.user
     })
 }

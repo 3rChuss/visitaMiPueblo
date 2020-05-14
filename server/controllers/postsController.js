@@ -26,6 +26,7 @@ exports.nuevoPost = (req, res) => {
     es_evento == "on" ? es_evento = 1 : es_evento = 0;
 
     Post.create({
+        id_autor: req.user.id,
         titulo,
         subtitulo,
         img_url,
@@ -33,7 +34,6 @@ exports.nuevoPost = (req, res) => {
         es_evento,
         fecha_evento,
         fecha_entrada: new Date().toLocaleDateString(),
-        autor: 'Jesus Mª Abril'
     })
     .then( resumen => res.redirect('/nuevo-post?titulo=Entrada Enviada 👏🏼') )
     .catch( err => console.log(err) )

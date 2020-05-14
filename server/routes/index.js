@@ -6,7 +6,8 @@ const   express     = require('express'),
 const   inicioC     = require('../controllers/inicioController'),
         postsC      = require('../controllers/postsController'),
         paginasC    = require('../controllers/paginasController'),
-        adminC      = require('../controllers/adminController');
+        adminC      = require('../controllers/adminController'),
+        usersC      = require('../controllers/userControllers');
 
 // MiddleWare
 const   Auth        = require('../middleware/auth');
@@ -35,8 +36,7 @@ module.exports = function() {
     }));
 
     //Admin
-    router.get('/_admin', adminC.adminPanel);
-    //router.get('/_admin', Auth.isLoggedIn, adminC.adminPanel);
+    router.get('/_admin', Auth.isLoggedIn, adminC.adminPanel);
 
     return router;
 }
