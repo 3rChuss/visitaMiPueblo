@@ -4,14 +4,15 @@ block contenido
         .row.mt-1.justify-content-center
             .col-12.text-center
                 h1.slider-text= pagina
-            .col-md-2.text-center#admin-btns
+            .col-md-3.text-center#admin-btns
                 .col
                     h3 Hola de nuevo #[span=usuario.nombre]
                     h3 ¿Qué deseas hacer?
                     a.btn.btn-primary.p-3(href="/_admin?contenido=nuevo-post", class=(contenido === 'nuevo-post' ? 'active' : '')) Nueva noticia
-                    a.btn.btn-primary.p-3(href="/_admin?contenido=panel-usuarios", class=(contenido === 'panel-usuarios' ? 'active' : '' )) Control de Usuarios
+                    if usuario.role === 'admin'
+                        a.btn.btn-primary.p-3(href="/_admin?contenido=panel-usuarios", class=(contenido === 'panel-usuarios' ? 'active' : '' )) Control de Usuarios
 
-            .col-md-10
+            .col-md-9
                 .col
                     if contenido === 'nuevo-post'
                         include paneles/nuevo-post
@@ -23,5 +24,6 @@ block contenido
                             .card-body
                                 p.card-text Para crear una nueva Entrada, haga click en #[strong Nueva Noticia]
                                 p.card-text Para modificar usuarios, haga click en #[strong Usuarios]
+
                         
                         

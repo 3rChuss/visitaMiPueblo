@@ -3,17 +3,14 @@ block contenido
     include ../layout/partials/bannerPublicidad 
     main.container.mt-3.mb-5
         .row
-            .col-sm-12
-                h2 El noticiario
-        .row
             .col-sm-12.col-md-8.col-lg-9
                 .row
                     each primera in entradas.splice(0,1)
                         .col-sm-12.col-md-12.p-2.mb-3.noticias
                                 .card.shadow
+                                    h2.card-header=primera.titulo
                                     a.text-danger(href=`post/${primera.id}?titulo=${primera.titulo}`)
                                         img(src=`${primera.img_url}`, class="card-img-top noticias-top", loading="lazy")
-                                        h2.card-header=primera.titulo
                                     blockquote.mb-0.p-1.blockquote-footer Fecha: #{primera.fecha_entrada} / Por: #{autor}
                                     .card-body#post-html
                                         h5.my-2.card-subtitle=primera.subtitulo

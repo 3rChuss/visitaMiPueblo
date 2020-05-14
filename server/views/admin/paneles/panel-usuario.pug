@@ -1,6 +1,45 @@
 .container.mt-5
     .row
-        .col-md-3.text-center#admin-btns
-            button.btn.btn-warning#btn-listaUsuarios Listar Usuarios
-            button.btn.btn-warning#btn-nuevoUsuario Añadir nuevo Usuario
-        .col-md-9
+        .col
+            table.table.table-hover.table-striped
+                thead.thead-dark
+                    tr
+                        th(scope="col") ID 🔒
+                        th(scope="col") Nombre 🌞
+                        th(scope="col") Email 📪
+                        th(scope="col") Contraseña 🔑
+                        th(scope="col") Role 🛠
+                        th(scope="col") Acción ⚙️
+                tbody
+                    each user in usuarios
+                        tr
+                            td(scope="row")=user.id
+                            td=user.nombre
+                            td=user.email
+                            td(class="hidetext")=user.passwd.substr(0,10)
+                                |  ...
+                            td=user.role
+                            td #[span#eliminar-user ❌] #[span#editar-user ✏️]
+    .row.align-items-center
+        .col-1
+            button#btn-form-habilitar.btn.btn-outline-primary ➕
+        .col-11
+            form(action="/registrar" method="POST")
+                fieldset#form-registrar(disabled="disabled")
+                    table.table.table-hover
+                        tbody
+                            tr
+                                td
+                                    input.form-control(type="text" required name="nombre" placeholder="Nombre")
+                                td
+                                    input.form-control(type="email" required name="email")
+                                td
+                                    input.form-control(type="password" required name="passwd")
+                                td
+                                    select#role.form-control(name="role" required)
+                                        option(value="" disabled selected) Elige un role
+                                        option(value="writer") Escritor
+                                        option(value="admin") Administrador
+                                td #[button.btn.btn-outline-success(type="Submit") ✔️]
+
+    script(src="/js/admin.js")

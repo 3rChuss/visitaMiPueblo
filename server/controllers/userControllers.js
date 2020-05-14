@@ -22,25 +22,9 @@ exports.loginUsuario = (obj, done) => {
         return user;
 };
 
-// exports.login = (req, res) => {
-//     res.render('admin/login', 
-//     {
-//         pagina: 'Iniciar Sesion'
-//     })
-// }
-
-exports.registrarUsuario = async (res, req, {nombre, email, passwd}) => {
-    let hash = bcrypt.hashSync(passwd, salt);
-
-    const nuevoUser = User.create({
-        nombre,
-        email, 
-        passwd: hash
-    })
-    .then( usuario => {
-        res.redirect('/registrar');
-    })
-    .catch( err => console.log(err) );
+exports.salir = (req, res) => {
+    req.logOut();
+    res.redirect('/');
 }
 
 

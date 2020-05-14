@@ -37,6 +37,8 @@ module.exports = function() {
 
     //Admin
     router.get('/_admin', Auth.isLoggedIn, adminC.adminPanel);
+    router.post('/registrar', Auth.isLoggedIn, adminC.registrarUsuario)
+    router.get('/salir', usersC.salir);
 
     return router;
 }

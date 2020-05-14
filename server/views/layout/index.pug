@@ -15,6 +15,8 @@ html(lang="en")
         include partials/slider
         block contenido
         include partials/footer
+        a#back-to-top.btn.btn-lg.back-to-top(href='#', role='button')
+            i.fas.fa-chevron-up
 
         script(src="/js/apiAemet.js")
         script(src="/js/index.js")

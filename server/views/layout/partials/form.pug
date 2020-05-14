@@ -1,12 +1,16 @@
 section#login
     .row.align-item-center.mb-2
         .col
-            #loginBtn
+            #loginBox
                 if usuario
                     span Bienvenido #{usuario.nombre}
+                    ul
+                        a(href="/_admin") #[li ⚙️ Panel de Control]
+                        a(href="/salir") #[li 🏃🏻 Salir]
                 else
-                    if ruta === '/'
-                        button.btn.btn-sm.btn-light#btn-login Login
+                    #loginBtn
+                        if ruta === '/'
+                            button.btn.btn-sm.btn-light#btn-login Login
             #loginForm.fadedfx
                 form.form-inline(action="/login", method="post", name="signin")
                     .form-group.col-12.justify-content-end

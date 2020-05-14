@@ -3,6 +3,9 @@
     font-family: 'Covered By Your Grace', cursive;
     font-family: 'Open Sans', sans-serif;
 }
+html {
+    scroll-behavior: smooth;
+}
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -26,16 +29,19 @@ a {
 a:hover {
     color: #15B9D5;
 }
-
 svg {
-    margin-right: 5px;
     position: relative;
     top: 2px;
 }
-
+a > svg, li > svg {
+    margin-right: 5px;
+}
 .escudo {
     max-width: 30px;
     display: flex;
+}
+.table td {
+    vertical-align: middle;
 }
 /* =========================================================== MENU */
 .navegacion {
@@ -131,7 +137,7 @@ svg {
 }
 /* =========================================================== SUBMENU */
 .mt--10 {
-    margin-top: -30px;
+    margin-top: -35px;
 }
 .submenu {
     font-family: 'Staatliches', cursive;
@@ -142,6 +148,9 @@ svg {
     padding: 10px 30px;
     letter-spacing: 1.5px;
     color: #fff;
+}
+.submenu svg {
+    margin-right: 5px;
 }
 .submenu .active {
     background-color: #fff;
@@ -166,7 +175,7 @@ svg {
         margin-right: 0;
         top: 0;
     }
-    #loginBtn {
+    #loginBtn, #loginBox {
         float: left !important;
     }
 }
@@ -422,6 +431,9 @@ article {
     margin-top: 5px;
     text-transform: uppercase;
 }
+.hidetext {
+    -webkit-text-security: disc;
+}
 /* =========================================================== OTHERS */
 
 .p-relative {
@@ -595,7 +607,6 @@ article {
 }
 .nav-link.active {
     border-bottom: 5px solid white;
-    line-height: 0.85;
 }
 blockquote {
     font-weight: bold;
@@ -614,7 +625,7 @@ header .nav a {
 #loginForm {
     transition: opacity .5s ease-in;
 }
-#loginBtn{
+#loginBtn, #loginBox{
     float: right;
 }
 .form-control, .form-check-label {
@@ -683,4 +694,12 @@ i {
     text-align: right;
     color: #DC135F;
     font-weight: bold;
+}
+.back-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    display: none;
+    color: #15B9D5;
+    background: rgba(0,0,0,0.60);
 }

@@ -19,18 +19,19 @@
 /**
  * Insertar el html del post formateado en /post
  */
-
- const div = document.createElement('p');
- const postHtml = document.querySelector('#post');
- const padre = document.querySelector('#post-html');
-    div.innerHTML = postHtml.textContent;
-    padre.appendChild(div);
-    postHtml.remove();
-
+    if ( window.location.pathname === '/' || document.URL.indexOf('/post') > 1 ) {
+        const div = document.createElement('p');
+        const postHtml = document.querySelector('#post');
+        const padre = document.querySelector('#post-html');
+            div.innerHTML = postHtml.textContent;
+            padre.appendChild(div);
+            postHtml.remove();
+    }
 
 
 const loginForm = document.querySelector('#loginForm');
 const loginBtn = document.querySelector('#loginBtn');
+const backToTop = document.querySelector('#back-to-top');
 /**
   * Events Listeners
   */
@@ -38,10 +39,18 @@ const loginBtn = document.querySelector('#loginBtn');
  document.addEventListener('DOMContentLoaded', () => {
     if ( document.location.pathname === '/')
         cargarDatosAemet();
-    loginBtn.addEventListener('click', mostrarForm);
     
+    loginBtn.addEventListener('click', mostrarForm);
+    window.onscroll = function() {this.scrollToTop()}
 });
 
+function scrollToTop () {
+    if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+        backToTop.style.display = 'block';
+    } else {
+        backToTop.style.display = 'none';
+    }
+  }
 
 function collapse() {
     let colapsable = document.querySelector('.colapsable');
