@@ -1,0 +1,34 @@
+.row.mt-5
+    .col-md-9
+        form(action="/nuevo-post" method="POST")
+            .form-group.mb-2
+                label(for="titulo") Título de la entrada / noticia
+                input(type="text" id="titulo" name="titulo" class="form-control form-control-lg" required)
+            .form-group.mb-2
+                label(for="subtitulo") Subtítulo / descripción corta
+                input(type="text" id="subtitulo" name="subtitulo" class="form-control form-control-lg")
+            .form-group.mb-2
+                label(for="img_url") URL de la imagen principal
+                input(type="text" id="img_url" name="img_url" class="form-control form-control-lg" required)
+            .row.m-0.bg-warning
+                .col.d-flex.align-items-center
+                    .form-check.mb-2
+                        input(type="checkbox" class="form-check-input" id="checkboxEvento" name="es_evento")
+                        label(for="checkboxEvento" class="form-check-label") ¿Es un evento próximo?
+                .col
+                    .form-group.mb-2
+                        label(for="fechaEvento" class="control-label") Fecha del evento
+                        input(type="text" class="form-control" id="fechaEvento" name="fecha_evento" placeholder="DD/MM/AAAA" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-autoclose="true")
+            .form-group.mb-2
+                label(for="html") Entrada de la noticia, #[small se permite HTML]
+                textarea#html(name="html", cols="30", rows="10" class="form-control")
+            button.btn.btn-primary.btn-sm-block(type="submit" required) Enviar entrada
+
+    .col-md-3
+        br
+        .card
+            .card-body
+                h3.card-title.text-center Ayuda ❓
+                p.card-text
+                    |Para subir imágenes, dirígete a ➡️ #[a.text-muted(href="https://imgur.com/upload") https://imgur.com/] selecciona la fotográfia que deseas insertar y espera que se suba. #[br]
+                    |Cuando visualizes la foto, si pasas el ratón por encima, en la parte superior derecha aparecerá la URL, haz click en #[strong copy] y pegalo en el campo de URL.

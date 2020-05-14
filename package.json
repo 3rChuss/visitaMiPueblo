@@ -1,0 +1,41 @@
+{
+  "name": "visitadeifontes",
+  "version": "1.0.0",
+  "description": "Página para el turismo en Deifontes",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server",
+    "start": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/3rChuss/VisitaDeifontes.git"
+  },
+  "keywords": [
+    "express",
+    "reactjs"
+  ],
+  "author": "Jesus M Abril @3rChuss",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/3rChuss/VisitaDeifontes/issues"
+  },
+  "homepage": "https://github.com/3rChuss/VisitaDeifontes#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "express-sessions": "^1.0.6",
+    "mysql2": "^2.1.0",
+    "nodemon": "^2.0.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.4",
+    "sequelize": "^5.21.7"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
+  }
+}

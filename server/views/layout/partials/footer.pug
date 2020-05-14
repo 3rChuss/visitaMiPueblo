@@ -1,0 +1,40 @@
+footer.container-fluid
+    .row.p-5
+        .col-md-8
+            .row
+                .col-md-4.col-sm-6
+                    h4.copyright Con la colaboración de:
+                    .row
+                        .col
+                            img(src="/img/pinchoedufooter.png", style="width: 50px")
+                            span  Eduardo "El Pincho"
+                    //- .row
+                    //-     .col
+                    //-         img.img-fluid(src="/img/cabecera-deifontes.png", style="width: 50px")
+                    //-         span  Ayto. Deifontes
+
+                .col-md-4.col-sm-6
+                    h4.copyright Acerca de:
+                        .row
+                            .col
+                                span Un proyecto creado en tiempos de cuarentena para fortalecer mis conocimientos de desarrollo web y hacer un poco de publicidad para encontrar más trabajo relacionado.
+                .col-md-4.col-sm-6
+                    h4.copyright Contacto
+                        .row
+                            .col
+                                p ¿Necesitas un app o una web?
+                                a(href="mailto:jesusabrilm@gmail.com") 📧 Enviar un email
+
+        .col-md-4
+            .row
+                .col-sm-12
+                    h4.copyright.text-md-right
+                        | Todos los Derechos Reservados 
+                        span.copyright= fechaActual.getFullYear()
+                    include form
+    .row
+        .col-12.bg-blanco
+            span.float-left Creado con 💖 por: #[span Jesus Mª Abril (El niño la mary y el saturno)]
+            span.float-right Sígueme en 
+                a(href="https://twitter.com/3rChuss") #[i.fab.fa-twitter.fa-lg]
+

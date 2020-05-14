@@ -1,0 +1,14 @@
+extends ../layout/index
+block contenido
+    section.container
+        .row.align-item-center.mb-2.justify-content-center
+            .col-6
+                form(action="/login", method="post", name="login")
+                    .form-group.col-12.justify-content-end
+                        label.sr-only(for="email") Correo
+                        input.form-control.mb-2#email(type="text" placeholder="tu@correo.com" autocomplete required name="email")
+                        label.sr-only(for="passw")
+                        input.form-control.mb-2#passw(type="password" autocomplete required placeholder="contraseña" name="passwd")
+                        input#recordar(type="checkbox" name="recordarUser")
+                        label.form-check-label(for="recordar") Recuérdame 
+                        button.btn.btn-sm.btn-primary.float-right(type="Submit") Entrar

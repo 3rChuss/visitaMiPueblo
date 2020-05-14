@@ -1,0 +1,672 @@
+:root {
+    font-family: 'Staatliches', cursive;
+    font-family: 'Covered By Your Grace', cursive;
+    font-family: 'Open Sans', sans-serif;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+}
+h1, h2, h3 {
+    font-family: 'Staatliches', cursive;
+    color: #15B9D5;
+}
+h1 {
+    font-size: 3.4rem;
+}
+h2 {
+    font-size: 2.4rem;
+}
+h3 {
+    font-size: 1.3rem;
+}
+a {
+    color: #15B9D5;
+}
+a:hover {
+    color: #15B9D5;
+}
+
+svg {
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
+}
+
+.escudo {
+    max-width: 30px;
+    display: flex;
+}
+/* =========================================================== MENU */
+.navegacion {
+    background-color: #15B9D5;
+    height: auto;
+}
+.topmenu {
+    justify-content: center;
+    align-items: center;
+}
+.topmenu .icon {
+    display: none;
+}
+.topmenu a:hover {
+    color: rgba(0,0,0,0.60);
+}
+.colapsable {
+    display: flex;
+    align-items: center;
+    max-height: 0;
+    transition: max-height 0.15s ease-out;
+}
+
+@media screen and (max-width: 768px) {
+    .publicidad .icono-tiempo img {
+        width: 80%;
+    }
+    .publicidad .texto {
+        font-size: 0.7rem;
+    }
+    footer .nav a, .copyright {
+        font-size: 1.2rem !important;
+    }
+    #fiestas img{
+        height: auto;
+        float: none;
+        margin-right: 0;
+        margin-bottom: 1rem;
+        display: block;
+        width: 100%;
+    }
+    .btn-sm-block {
+        display: block;
+        width: 100%;
+    }
+    .m--100 {
+        margin-top: 0px !important ;
+    }
+    .navegacion {
+        height: 100px;
+        transition: height 300ms ease-out;
+    }
+    .topmenu {
+        display: block;
+        text-align: right;
+    }
+    .topmenu .icon {
+        display: block;
+    }
+    .colapsable {
+        display: none;
+    }
+    .responsive {
+        position: relative;
+        display: block;
+    }
+    .topmenu.responsive .icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .topmenu.responsive a {
+        display: block;
+    }
+    .escudo {
+        display: none;
+    }
+}
+/* =========================================================== SLIDER */
+.foto-slider {
+    background-image: url('../img/palacio.webp');
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    min-height: 300px;
+    background-position: 50% 50%;
+    background-size: cover;
+}
+.slider-text {
+    margin-left: 50px;
+}
+.oscuro {
+    background: rgba(0,0,0,0.60);
+}
+/* =========================================================== SUBMENU */
+.mt--10 {
+    margin-top: -30px;
+}
+.submenu {
+    font-family: 'Staatliches', cursive;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.submenu a {
+    padding: 10px 30px;
+    letter-spacing: 1.5px;
+    color: #fff;
+}
+.submenu .active {
+    background-color: #fff;
+    border-radius: 5px;
+    color: rgba(0,0,0,0.60) !important;
+}
+@media (max-width: 540px){
+    .slider-text {
+        margin-left: 5px;
+    }
+    .submenu {
+        font-size: 0.8rem;
+    }
+    .submenu a {
+        padding: 10px 5px;
+        letter-spacing: 0.9px;
+    }
+    .card-body {
+        padding: 0.25rem !important;
+    }
+    .card-body svg {
+        margin-right: 0;
+        top: 0;
+    }
+}
+@media (max-width: 380px){
+    .submenu {
+        font-size: 0.7rem;
+    }
+}
+/* =========================================================== NOTICIARIO */
+.noticias h5 {
+    font-weight: 700;
+}
+.noticias p {
+    margin-bottom: 0;
+    font-size: 1.1rem;
+}
+.noticias img {
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: 100% 25%;
+}
+.agenda .list-group-item {
+    padding: .55rem .525rem;
+}
+.agenda ul li a {
+    color: #DC135F;
+    font-size: 0.9rem;
+}
+.agenda ul li a:hover {
+    color: #15B9D5;
+}
+.tachado {
+    text-decoration: line-through;
+    color: #b6b6b6 !important;
+}
+/* =========================================================== POSTS */
+
+article {
+    padding: 25px;
+}
+.img-post {
+    width: 100%;
+    max-height: 350px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+.img-post img {
+    width: 100%;
+    height: 100%;
+}
+.meta-cabecera {
+    font-size: 0.7rem;
+}
+
+/* =========================================================== DEIFONTES */
+    /* =========================================================== GALERIA */
+    .galeria img:hover {
+        transform: scale(1.1);
+    } 
+    .galeria {
+
+    }
+    .galeria img {
+        opacity: 0;
+        transition: all .7s ease;
+        cursor: pointer;
+    }
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+      }
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+      }
+      .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+      .close:hover, .close:focus {
+        color: #bbb;
+        text-decoration: none;
+        cursor: pointer;
+        }
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px){
+            .modal-content {
+                width: 100%;
+            }
+        }
+/* =========================================================== FIESTAS */
+#fiestas img{
+    height: auto;
+    float: left;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+}
+#fiestas .texto p {
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+/* =========================================================== QUE VER */
+.que-ver-otros p {
+    font-size: 1rem;
+}
+
+.video-background {
+    background: #000;
+    position: absolute;
+    top: -30px; right: 0; bottom: -30px; left: 0;
+    z-index: -99;
+}
+.video-foreground,
+.video-background iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* =========================================================== NOTICIARIO */
+    /* =========================================================== WIDGET TIEMPO */
+
+    .elTiempo {
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-height: 300px;
+        display: flex;
+    }
+
+    .icono-tiempo {
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+    .elTiempo .icono-tiempo {
+        width: 300px;
+        float: left;
+        z-index: 1;
+    }
+    .animate-src {
+        transition: opacity 1.5s ease-out;
+        -webkit-transition: opacity 1.5s ease-out;
+        -moz-transition: opacity 1.5s ease-out;
+        -ms-transition: opacity 1.5s ease-out;
+        -o-transition: opacity 1.5s ease-out;
+        opacity: 0;
+    }
+    .resumen-tiempo {
+        display: flex;
+        align-items: center;
+        margin-left: -35px;
+    }
+
+    .tempActual {
+        position: relative;
+        font-size: 32px;
+        font-weight: 700;
+        z-index: 1;
+    }
+    .parametros {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+    }
+    .texto {
+        width: 100%;
+        padding: 0 1rem;
+        z-index: 1;
+    }
+    .temps {
+        padding: 0 1rem;
+        z-index: 1;
+    }
+    /* BACKGROUNDS PARA EL TIEMPO */
+    .bg-soleado {
+        background: linear-gradient(
+            95deg,
+            #eaecc6,
+            #2bc0e4
+        );
+    }
+    .bg-pocoNublado {
+        background: linear-gradient(
+            5deg,
+            #2bc0e4,
+            #2e3483
+        );
+        color: #fff;
+    }
+    .bg-nublado {
+        background: linear-gradient(
+            150deg, 
+            #b6b6b6 8.89%,
+            #000000 94.31%);
+        color: #fff;
+    }
+    .bg-noche {
+        background-color:black;
+        background-image:
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        color: #fff;
+    }
+    .bg-nieve {
+        background: linear-gradient(
+            45deg,
+            #e0eafc,
+            #cfdef3);
+        color: #000;
+    }
+
+
+/* =========================================================== ADMIN PANEL */
+#admin-btns .btn{
+    display: block;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+/* =========================================================== OTHERS */
+
+.p-relative {
+    position: relative;
+}
+
+.fadedfx {
+    visibility: hidden;
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+    -webkit-animation-name: fadeIn;
+    animation-duration: .9s;
+    -webkit-animation-duration: .9s;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    visibility: visible !important;
+  }
+  .fadeOut {
+    animation-name: fadeOut;
+    -webkit-animation-name: fadeOut;
+    animation-duration: .9s;
+    -webkit-animation-duration: .9s;
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    visibility: visible !important;
+  }
+  
+  @keyframes fadeIn {
+    0% {
+      opacity: 0.0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes fadeIn {
+    0% {
+      opacity: 0.0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  @-webkit-keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+.parallax {
+    background-repeat: no-repeat;
+    background-clip: border-box;
+    min-height: 350px;
+    background-position: 50% 50%;
+    background-attachment: fixed;
+    transform: scale(1.05);
+}
+
+.z-1 {
+    z-index: 1;
+}
+.z-2 {
+    z-index: 2;
+}
+.bg-blanco {
+    background-color: #f3f3f3;
+}
+
+.publicidad img{
+    width: 100%;
+    max-width: 100%;
+}
+.op-1 {
+    opacity: 0.6;
+}
+#interes a {
+    text-decoration: none;
+    color: #000;
+}
+.foto-fondo {
+    background-attachment: fixed;
+    background-position: 10% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.foto-deifontes {
+    background-image: url('../img/mapaSlider.jpg');
+}
+
+.foto-drone {
+    background-image: url('../img/dronePueblo.jpg');
+    z-index: -1;
+}
+.foto-grande {
+    transform: scale(1.5);
+    position: relative;
+    z-index: 1;
+}
+.m--100 {
+    margin-top: -150px;
+}
+.m--200 {
+    margin-top: -250px;
+}
+@media (max-width: 540px){
+    .m--100 {
+        margin-top: 0;
+    }
+}
+.o-hidden {
+    overflow: hidden;
+}
+.btn-success {
+    background-color: #DC135F;
+    border-color: #DC135F;
+    padding: .8rem 0;
+    text-transform: uppercase;
+    border-radius: .8rem;
+}
+.btn-success:hover {
+    background-color: rgb(184, 5, 73);
+    border-color: rgb(192, 7, 78);
+}
+.slider {
+    background: url(../img/superior.jpg);
+    min-height: 600px;
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.slider h1 {
+    color: white;
+}
+.slider em {
+    font-family: 'Covered By Your Grace', cursive;
+    font-size: 4rem;
+    order: -1;
+    line-height: .8;
+    color: rgba(255, 255, 255, .5);
+}
+
+.home {
+    position: relative;
+}
+.home .navegacion {
+    background: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.nav-link.active {
+    border-bottom: 5px solid white;
+    line-height: 0.85;
+}
+blockquote {
+    font-weight: bold;
+    line-height: 2;
+}
+p {
+    font-size: 1.2rem;
+    line-height: 2;
+}
+header .nav a {
+    font-family: 'Staatliches', cursive;
+    font-size: 1.8rem;
+    color: white;
+}
+/* =========================================================== FOOTER */
+#loginForm {
+    transition: opacity .5s ease-in;
+}
+.form-control, .form-check-label {
+    font-size: 0.6rem;
+}
+#loginForm button, #loginBtn button {
+    font-size: 0.6rem;
+}
+#loginForm input, #loginForm label {
+    margin-right: 0.2rem;
+}
+footer {
+    background-color: rgba(0, 0, 0, .1);
+    font-family: 'Staatliches', cursive;
+}
+footer .nav a:hover {
+    color: #15B9D5;
+}
+footer span, footer p{
+    font-size: 0.9rem;
+}
+
+footer .nav a,
+.copyright {
+    font-family: 'Staatliches', cursive;
+    font-size: 1.6rem;
+    color: black;
+}
+
+@media (min-width:768px) and (max-width: 1024px) {
+    .m--100 {
+        margin-top: -30px;
+    }
+    #interes a {
+        font-size: 0.8rem;
+    }
+    .descuento {
+        height: 400px;
+        background-image:  linear-gradient(
+            to right, 
+            rgba(0, 0, 0, .5) 0%, 
+            rgba(0, 0, 0, .5) 50%, 
+            transparent 50%, 
+            transparent 100%
+        ), url(../img/cupon.jpg);
+    }
+    header .nav a {
+        font-size: 1rem;
+    }
+    #logo {
+        width: 75%;
+    }
+}
+@media (min-width:1024px) and (max-width: 1280px ) {
+    header .nav a {
+        font-size: 1.3rem;
+    }
+}
+
+i {
+    color: #DC135F;
+    font-size: 2rem;
+}
+
+.blockquote-footer {
+    text-align: right;
+    color: #DC135F;
+    font-weight: bold;
+}

@@ -1,0 +1,40 @@
+const Post    = require('../models/Posts');
+exports.mostrarPosts = async (req, res) => {
+    let titulo = "";
+    if(req.query.titulo) titulo = req.query.titulo;    
+
+    const post = await Post.findByPk(req.params.id)
+    res.render('post/index', {
+        pagina: titulo,
+        post
+    })
+}
+
+exports.paginaPost = (req, res) => {
+    let titulo = "";
+    if (req.query.titulo) titulo = req.query.titulo;
+        else titulo = "Crear nueva publicación 📝"
+    res.render('admin', {
+        pagina: titulo
+    });
+}
+
+exports.nuevoPost = (req, res) => {
+    let { titulo, subtitulo, img_url, es_evento, fecha_evento, html } = req.body;
+    // Comprobar los campos no oblgatorios
+    if (!subtitulo) subtitulo = "";
+    es_evento == "on" ? es_evento = 1 : es_evento = 0;
+
+    Post.create({
+        titulo,
+        subtitulo,
+        img_url,
+        html,
+        es_evento,
+        fecha_evento,
+        fecha_entrada: new Date().toLocaleDateString(),
+        autor: 'Jesus Mª Abril'
+    })
+    .then( resumen => res.redirect('/nuevo-post?titulo=Entrada Enviada 👏🏼') )
+    .catch( err => console.log(err) )
+}

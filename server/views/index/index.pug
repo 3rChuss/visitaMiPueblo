@@ -1,0 +1,47 @@
+extends ../layout/index
+block contenido
+    include ../layout/partials/bannerPublicidad 
+    main.container.mt-3.mb-5
+        .row
+            .col-sm-12
+                h2 El noticiario
+        .row
+            .col-sm-12.col-md-8.col-lg-9
+                .row
+                    each entrada in entradas
+                        .col-sm-12.col-md-12.col-lg-6.p-2.mb-3.noticias
+                            .card.shadow
+                                a.text-danger(href=`post/${entrada.id}?titulo=${entrada.titulo}`)
+                                    img(src=`${entrada.img_url}`, class="card-img-top", loading="lazy")
+                                    h2.card-header=entrada.titulo
+                                blockquote.mb-0.p-1.blockquote-footer Fecha: #{entrada.fecha_entrada} / Por: #{entrada.autor}
+                                .card-body#post-html
+                                    h5.my-2.card-subtitle=entrada.subtitulo
+                                    p.card-text#post=entrada.html.substr(0,200)
+                                        |  . . .
+
+            aside.col-sm-12.col-md-4.col-lg-3.publicidad
+                h3 Publicidad
+                img(src="img/bannerCuadrado.png", alt="Tu banner publicitario aquí")
+                .row.mt-3
+                    .col-sm.agenda
+                        h3 Agenda - Próximos eventos
+                        ul.list-group
+                            each evento in eventos
+                                li.list-group-item.bg-light #[a(href=`post/${evento.id}?titulo=${evento.titulo}` class=( evento.clase ? evento.clase : '' )) #{evento.titulo.substr(0,20)}... #[span.float-right.text-info #{evento.fecha_evento}]]
+                section.row.mt-3
+                    .col-sm
+                        h3 ¿Qué tiempo hace hoy?
+                        .elTiempo.shadow
+                            .icono-tiempo
+                                img.animate-src(src='img/icons/weather.svg', alt="El tiempo en deifontes")
+                            .resumen-tiempo
+                                .tempActual
+                                .parametros
+                                    span.texto
+                                    span.temps
+                                        strong#maxima
+                                        span#minima
+
+                        
+                        

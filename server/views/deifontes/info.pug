@@ -1,0 +1,59 @@
+extends ../deifontes/index
+block contienente
+    main.container.mt-2
+        .row
+            .col-md-7
+                blockquote Fue llamado durante la dominación musulmana Dialfates (aunque es más probable que lo sea de dar y alfont, casa de la fuente), pasando a llamarse posteriormente (por Real Orden del año 1903) con la denominación actual, que procede de los vocablos latinos Deus y Fons, que significa Fuentes de Dios, posiblemente debido a sus magní­ficos manantiales.
+                p A orillas del rí­o Cubillas, en las estribaciones occidentales de Sierra Arana, y a 24 kilómetros de la capital de la Alhambra, se encuentra #[strong Deifontes]. Espacio cargado de historia, goza de una situación privilegiada en cuanto al entorno natural que lo rodea, donde el agua juega un destacado papel, así­ en la llamada Cueva del Agua de Deifontes como en el propio rí­o que cruza el término municipal, primer nutriente del tan conocido embalse del Cubillas, muy próximo a la población.
+                p Todo el casco urbano se enmarca en los límites de la finca denominada Hacienda Deifontes, que con sus casi 22 kilómetros cuadrados de extensión comprende más de la mitad de la actual superficie municipal. En su término se disfruta de excelentes paisajes y en sus alrededores.
+            .col-md-5
+                .card.shadow.p-1#interes
+                    video.card-img(controls autoplay muted)
+                        source(src="videos/deifontes.mp4" type="video/mp4")
+                        | No soportado
+                    .card-body
+                        .card-title
+                            h3 Contacto
+                        table.table.table-hover.table-sm.border-0
+                            tr
+                                th(scope="row") #[i.fas.fa-globe]
+                                td #[a(href="https://www.ayuntamientodeifontes.es/") www.ayuntamientodeifontes.es]
+                                    
+                            tr
+                                th(scope="row") #[i.fas.fa-phone-alt]
+                                td #[a(href="tel:958407005") 958407005]
+            
+        .row.mt-5
+            .col-sm-12
+                h2 Datos actuales
+        .row
+            .col-sm-12.mb-5
+                p.bg-light #[strong Ayuntamiento:] Presidido por #[strong Francisco Abril] y su partido político militante de Izquierda Unida. Governando desde el año 2015 y con mayoría absoluta. 
+                p.bg-light #[strong Población:] #[span#poblacion ] hab. (última actualización - #[span#anio ]).
+                p.bg-light #[strong Gentilizio:] Deifonteros / Deifonteras.
+                p.bg-light #[strong Distancia a la capital:] 24km.
+                p.bg-light #[strong Economía:] Principalmente Agricultura (Olivares).
+                p.bg-light #[strong Superficie:] 40.48 km#[sup 2].
+                p.bg-light #[strong Altitud:] 735 msnm.
+
+    .container-fluid.foto-fondo.foto-deifontes.my-3
+        .row.text-center.oscuro
+            .container.p-5
+                .row.m-0
+                    .col-sm.p-3.m-1.rounded.shadow.bg-light
+                        a(href="/deifontes/historia")
+                            img.img-fluid(src="img/historia.jpg", alt="Historia sobre Deifontes")
+                            h2.mt-2 Historia
+                        p Conoce la historia acerca de nuestro maravilloso pueblo
+                    .col-sm.p-3.m-1.rounded.shadow.bg-light
+                        a(href="/fiestas")
+                            img.img-fluid(src="img/sanIsidro.jpg", alt="Fiestas tradicionales de Deifontes")
+                            h2.mt-2 Fiestas
+                        p Vea más sobre las fiestas y tradiciones de los deifonter@s
+                    .col-sm.p-3.m-1.rounded.shadow.bg-light
+                        a(href="/que-ver")
+                            img.img-fluid(src="img/monumentos.jpg", alt="Monumentos de Deifontes")
+                            h2.mt-2 Sitios
+                        p Conozca nuestros monumentos y la naturaleza que los rodea
+
+    script(src="/js/apiCenso.js")

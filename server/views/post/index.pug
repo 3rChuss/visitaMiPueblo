@@ -1,0 +1,48 @@
+extends ../layout/index
+block contenido
+    section.container.mb-5
+        .row.mt-2
+            .col-sm
+                nav(aria-label="breadcrumb")
+                    ol.breadcrumb.bg-transparent
+                        li.breadcrumb-item #[a(href="/" target="_self" nofollow) Inicio]
+                        li.breadcrumb-item(aria-current="page") Post
+        .row
+            main.col-sm-8
+                .col-sm-12.bg-blanco.p-0
+                    .img-post
+                        img(src=`${post.img_url}`, alt=`${post.titulo}`)
+                    article#post-html(itemtype="https://schema.org/CreativeWork")
+                        header.mb-5
+                            h2=post.subtitulo
+                            p.meta-cabecera Actualizado el 
+                                time(datetime=post.fecha_entrada)=post.fecha_entrada
+                                span.float-right
+                                    a.btn.btn-sm.btn-primary.mr-2(href="#") Twietéalo
+                                        i.fab.fa-twitter.fa-lg.float-left
+                                    a.btn.btn-sm.btn-primary(href="#") Comparte
+                                        i.fab.fa-facebook.fa-lg.float-left
+                            .contenido-post#post
+                                p.d-none=post.html
+
+            aside.col-sm-4.post-img
+                .col-sm-12.post-social
+                    section.mb-4.publicidad
+                        h3 Publicidad
+                        img(src="/img/bannerCuadrado.png", alt="Tu banner publicitario aquí")
+                    section.mb-2
+                        h3 Enlances de Interés
+                        ul.list-group.list-group-flush
+                            li.list-group-item #[a(href="https://www.ayuntamientodeifontes.es/" target="_blank" nofollow) Ayuntamiento]
+                                 i.fas.fa-home.fa-lg.float-left
+                            li.list-group-item
+                                a(href="https://www.youtube.com/channel/UCxg2k1o9DwO5vqkuT1AYEcQ" target="_blank" nofollow) Deifosport
+                                    i.fab.fa-youtube.fa-lg.text-danger.float-left
+                            li.list-group-item #[a(href="https://www.granadahoy.com/" target="_blank" nofollow) Períodico Granada hoy]
+                                i.far.fa-newspaper.fa-lg.float-left
+                            li.list-group-item #[a(href="https://www.ideal.es/temas/lugares/deifontes.html" target="_blank" nofollow) Deifontes en el Ideal]
+                                i.far.fa-newspaper.fa-lg.float-left
+
+        .row.my-md-5.my-sm-1
+            .col-sm-12.text-center.m-4.publicidad
+                img(src="../img/bannerPost.png", alt="")

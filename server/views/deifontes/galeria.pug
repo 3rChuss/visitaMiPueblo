@@ -1,0 +1,29 @@
+extends ../deifontes/index
+block contienente
+    main
+        .modal.fadedfx
+            span.close ❌
+            img.modal-content
+            .caption
+
+        section.row.ml-0.mr-0
+            .container
+                .row.mx-0.p-2
+                    .col-sm.text-center
+                        h1 Ven a visitarnos
+        section.container
+            .row.p-2.mb-5
+                each imagen in imagenes
+                    .col-sm-6.col-md-4.galeria.p-1
+                        img.img-fluid.rounded(src=`/img/galeria/${imagen}`, alt=imagen, loading="lazy")
+
+        section.container-fluid
+            .row
+                .col-sm-12.text-center
+                    h3 Vista 360º
+                    iframe(height='550px', width='100%', allowfullscreen='true', src='https://momento360.com/e/u/3458da36045d4354b582cf1885e544fe?utm_campaign=embed&utm_source=other&heading=339.88419961094394&pitch=-36.74205825337369&field-of-view=96')  
+
+
+
+
+    script(src="/js/galeria.js")
