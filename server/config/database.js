@@ -14,6 +14,6 @@ module.exports = new Sequelize(process.env.DB_NOMBRE, process.env.DB_USER, proce
         acquire: 30000,
         idle: 10000
     },
-    operatorAliases: false
-    //logging: false
+    operatorAliases: false,
+    logging: false
 });
