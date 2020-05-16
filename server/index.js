@@ -82,4 +82,5 @@ require('dotenv').config({ path: 'variables.env' });
 
     app.listen(port, host, () => {
         console.log('Servidor funcionando')
+        console.log(port + ' : ' + host);
     });
