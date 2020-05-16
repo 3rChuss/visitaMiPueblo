@@ -10,9 +10,9 @@ header
                         a.icon(href="javascript:void(0);" onclick="collapse()")
                             i.fa.fa-bars
                         .colapsable
-                            a.nav-link(href="/", class=(ruta === '/' ? 'active' : '')) Noticias
+                            a.nav-link(href="/", class=(ruta === '/' || ruta.includes('/post') ? 'active' : '')) Noticias
                             img(src="/img/logoDeifontes.svg", alt="Logo" class="escudo")
-                            a.nav-link(href="/deifontes", class=(ruta === '/deifontes' ? 'active' : '')) Deifontes
+                            a.nav-link(href="/deifontes", class=((ruta.includes('/deifontes')) ? 'active' : '' )) Deifontes
                             a.nav-link(href="/que-ver", class=(ruta === '/que-ver' ? 'active' : '')) Que ver
                             a.nav-link(href="/fiestas", class=(ruta === '/fiestas' ? 'active' : '')) Fiestas
                             //a.nav-link(href="/hospedaje", class=(ruta === '/hospedaje' ? 'active' : '')) Hospedaje

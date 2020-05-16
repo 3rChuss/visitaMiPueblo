@@ -73,7 +73,10 @@ a > svg, li > svg {
         font-size: 0.7rem;
     }
     footer .nav a, .copyright {
-        font-size: 1.2rem !important;
+        font-size: 0.9rem !important;
+    }
+    footer .copyright span {
+        font-size: 0.7rem;
     }
     #fiestas img{
         height: auto;
@@ -185,6 +188,9 @@ a > svg, li > svg {
     }
 }
 /* =========================================================== NOTICIARIO */
+.card-header {
+    text-align: center;
+}
 .noticias h5 {
     font-weight: 700;
 }
@@ -289,6 +295,10 @@ article {
                 width: 100%;
             }
         }
+/* =========================================================== HISTORIA */
+        #linkLibro a:hover{
+            color: #151515;
+        }
 /* =========================================================== FIESTAS */
 #fiestas img{
     height: auto;
@@ -338,7 +348,7 @@ article {
         overflow: hidden;
     }
     .icono-tiempo img {
-        margin-left: -25px;
+        margin-left: -10px;
     }
     .elTiempo .icono-tiempo {
         width: 300px;
@@ -364,13 +374,11 @@ article {
         font-size: 32px;
         font-weight: 700;
         z-index: 1;
-        margin-left: -15px;
     }
     .parametros {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        z-index: 1;
+        text-align: center;
+        padding: 0 10px;
+        line-height: 0.7rem;
     }
     .texto {
         width: 100%;
@@ -558,6 +566,9 @@ article {
     .m--100 {
         margin-top: 0;
     }
+    .card-body {
+        padding: 1.25rem !important;
+    }
 }
 .o-hidden {
     overflow: hidden;
@@ -702,4 +713,7 @@ i {
     display: none;
     color: #15B9D5;
     background: rgba(0,0,0,0.60);
+}
+.back-to-top svg {
+    margin: 0;
 }

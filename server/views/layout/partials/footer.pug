@@ -1,25 +1,25 @@
 footer.container-fluid
-    .row.p-5
+    .row.p-4
         .col-md-8
             .row
                 .col-md-4.col-sm-6.mb-5.mb-lg-0
-                    h4.copyright Con la colaboración de:
+                    h4 Con la colaboración de:
                     .row
                         .col
                             img(src="/img/pinchoedufooter.png", style="width: 50px")
                             span  Eduardo "El Pincho"
-                    //- .row
-                    //-     .col
-                    //-         img.img-fluid(src="/img/cabecera-deifontes.png", style="width: 50px")
-                    //-         span  Ayto. Deifontes
+                    .row
+                        .col
+                            img.img-fluid(src="/img/adriano.png", style="width: 50px")
+                            span  Adriano Navarro
 
                 .col-md-4.col-sm-6.mb-5.mb-lg-0
-                    h4.copyright Acerca de:
+                    h4 Acerca de:
                         .row
                             .col
-                                span Un proyecto creado en tiempos de cuarentena para fortalecer mis conocimientos de desarrollo web y hacer un poco de publicidad para encontrar más trabajo relacionado.
+                                span Proyecto creado para dar la oportunidad a nuestro pueblo de volver a tener su periódico local, con la ayuda de sus pueblerinos.
                 .col-md-4.col-sm-6.mb-5.mb-lg-0
-                    h4.copyright Contacto
+                    h4 Contacto
                         .row
                             .col
                                 p ¿Necesitas un app o una web?
@@ -28,12 +28,10 @@ footer.container-fluid
         .col-md-4
             .row
                 .col-sm-12
-                    h4.copyright.text-md-right
-                        | Todos los Derechos Reservados 
-                        span.copyright= fechaActual.getFullYear()
+                    h4.text-md-right Todos los Derechos Reservados #{fechaActual.getFullYear()}
                     include form
     .row
-        .col-12.bg-blanco
-            span.float-left Creado con 💖 por: #[span Jesus Mª Abril (El niño la mary y el saturno)]
+        .col-12.bg-blanco.copyright
+            span.float-left Creado con 💖 por: #[span Jesus Mª Abril (El niño la Mary y el Saturno)]
             span.float-right Sígueme en 
                 a(href="https://twitter.com/3rChuss") #[i.fab.fa-twitter.fa-lg]
