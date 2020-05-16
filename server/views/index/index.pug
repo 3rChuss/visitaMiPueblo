@@ -39,8 +39,11 @@ block contenido
                     .col-sm.agenda
                         h3 Agenda - Próximos eventos
                         ul.list-group
-                            each evento in eventos
-                                li.list-group-item.bg-light #[a(href=`post/${evento.id}?titulo=${evento.titulo}` class=( evento.clase ? evento.clase : '' )) #{evento.titulo.substr(0,20)}... #[span.float-right.text-info #{evento.fecha_evento}]]
+                            if (eventos.length > 0)
+                                each evento in eventos
+                                    li.list-group-item.bg-light #[a(href=`post/${evento.id}?titulo=${evento.titulo}` class=( evento.clase ? evento.clase : '' )) #{evento.titulo.substr(0,20)}... #[span.float-right.text-info #{evento.fecha_evento}]]
+                            else
+                                li.list-group-item No hay eventos
                 section.row.mt-3
                     .col-sm
                         h3 ¿Qué tiempo hace hoy?

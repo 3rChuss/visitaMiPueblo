@@ -8,17 +8,27 @@ exports.mostrarPosts = async (req, res) => {
             ['id', 'DESC']
             ]
         })
-    
-        let eventos = entradas.filter( entrada => entrada.es_evento == true);
-            eventos.forEach(evento => {
+        
+        //Buscamos todos los eventos
+        let allEventos = entradas.filter( entrada => entrada.es_evento == true);
+        let eventos = [];
+        if (allEventos.length > 0 )
+            allEventos.forEach((evento, index) => {
                 let fechaEvento = new Date(evento.fecha_evento)
-                let fechaExp = new Date(new Date(fechaEvento).setDate(fechaEvento.getDate() + 15));
-                if ( fechaEvento < fechaExp ) {
+                let fechaExpClase = new Date(new Date(fechaEvento).setDate(fechaEvento.getDate() + 1));
+                let fechaExpBorrar = new Date(new Date(fechaEvento).setDate(fechaEvento.getDate() + 5));
+                //Comparamos el evento para saber si ya ha expirado
+                if ( fechaEvento < fechaExpClase ) {
                     evento.clase = "tachado";
                 }
-            }
-        )
-    
+                //Si ha pasado más de 5 días, lo añadimos a nuestro eventos[] para despues borrarlo
+                if ( fechaEvento < fechaExpBorrar) {
+                   eventos.push(evento);
+                }
+            })
+        // Comprobamos los eventos caducados de mas de 5 dias para no mostrarlos.
+        eventos = eventos.filter(val => !allEventos.includes(val));
+
     // Le decimos a Sequalize que las tablas tienen relacion
     Users.belongsTo(Post, { foreignKey: 'id'});
     //Buscamos el autor del post por el %id_autor%
