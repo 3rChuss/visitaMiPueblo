@@ -8,6 +8,7 @@ exports.mostrarPosts = async (req, res) => {
             ['id', 'DESC']
             ]
         })
+    console.log(entradas);
     
         let eventos = entradas.filter( entrada => entrada.es_evento == true);
             eventos.forEach(evento => {
