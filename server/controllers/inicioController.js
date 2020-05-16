@@ -8,8 +8,6 @@ exports.mostrarPosts = async (req, res) => {
             ['id', 'DESC']
             ]
         })
-
-    console.log(entradas);
     
         let eventos = entradas.filter( entrada => entrada.es_evento == true);
             eventos.forEach(evento => {
@@ -20,8 +18,6 @@ exports.mostrarPosts = async (req, res) => {
                 }
             }
         )
-
-    console.log(eventos);
     
     // Le decimos a Sequalize que las tablas tienen relacion
     Users.belongsTo(Post, { foreignKey: 'id'});
@@ -31,7 +27,6 @@ exports.mostrarPosts = async (req, res) => {
             include: Post,
             through: { attributes:['id_autor'] }
         })
-    console.log(autor);
     
         res.render('index', {
             pagina: "Bienvenidos a Deifontes",
