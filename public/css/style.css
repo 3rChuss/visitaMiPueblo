@@ -72,6 +72,7 @@ a > svg, li > svg {
     .publicidad .texto {
         font-size: 0.7rem;
     }
+
     footer .nav a, .copyright {
         font-size: 0.9rem !important;
     }
@@ -172,14 +173,43 @@ a > svg, li > svg {
         letter-spacing: 0.9px;
     }
     .card-body {
-        padding: 0.25rem !important;
+        padding: 0 1.25rem 1.25rem 1.25rem !important;
+        background-color: rgba(0,0,0,.03);
     }
     .card-body svg {
         margin-right: 0;
         top: 0;
     }
+    .card-subtitle {
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    .card-text {
+        font-size: 0.9rem !important;
+        text-align: center;
+    }
+    .card .blockquote-footer {
+        font-size: 0.6rem;
+        background-color: rgba(0,0,0,.03);
+    }
     #loginBtn, #loginBox {
         float: left !important;
+    }
+    .m--100 {
+        margin-top: 0;
+    }
+    .card {
+        border-radius: 15px;
+    }
+    .card-img-top {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+    .card-header {
+        font-size: 1.8rem !important;
+    }
+    .noticias img {
+        max-height: 295px !important;
     }
 }
 @media (max-width: 380px){
@@ -525,7 +555,7 @@ article {
     background-color: #f3f3f3;
 }
 
-.publicidad img{
+.publicidad img {
     width: 100%;
     max-width: 100%;
 }
@@ -562,14 +592,7 @@ article {
 .m--200 {
     margin-top: -250px;
 }
-@media (max-width: 540px){
-    .m--100 {
-        margin-top: 0;
-    }
-    .card-body {
-        padding: 1.25rem !important;
-    }
-}
+
 .o-hidden {
     overflow: hidden;
 }
@@ -702,7 +725,7 @@ i {
 }
 
 .blockquote-footer {
-    text-align: right;
+    text-align: center;
     color: #DC135F;
     font-weight: bold;
 }
