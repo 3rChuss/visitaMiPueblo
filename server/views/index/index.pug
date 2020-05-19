@@ -3,13 +3,13 @@ block contenido
     include ../layout/partials/bannerPublicidad 
     main.container.mt-3.mb-5
         .row
-            .col-sm-12.col-md-8.col-lg-9
+            .col-sm-12.col-md-8.col-lg-9(role="feed")
                 .row
                     each primera in entradas.splice(0,1)
-                        .col-sm-12.col-md-12.p-2.mb-3.noticias
+                        .col-sm-12.col-md-12.p-2.mb-3.noticias(role="article")
                                 .card.shadow
                                     h2.card-header=primera.titulo
-                                    a.text-danger(href=`post/${primera.id}?titulo=${primera.titulo}`)
+                                    a(href=`post/${primera.id}?titulo=${primera.titulo}`)
                                         img(src=`${primera.img_url}`, class="card-img-top noticias-top", loading="lazy")
                                     .card-body#post-html
                                         h5.my-2.card-subtitle=primera.subtitulo
@@ -21,9 +21,9 @@ block contenido
                         h3 No te pierdas estas noticias
                 .row
                     each entrada in entradas
-                        .col-sm-12.col-md-12.col-lg-6.p-2.mb-3.noticias
+                        .col-sm-12.col-md-12.col-lg-6.p-2.mb-3.noticias(role="article")
                             .card.shadow
-                                a.text-danger(href=`post/${entrada.id}?titulo=${entrada.titulo}`)
+                                a(href=`post/${entrada.id}?titulo=${entrada.titulo}`)
                                     img(src=`${entrada.img_url}`, class="card-img-top", loading="lazy")
                                     h2.card-header=entrada.titulo
                                 .card-body#post-html
@@ -32,9 +32,9 @@ block contenido
                                         |  . . .
                                 blockquote.mb-0.p-1.blockquote-footer #{entrada.fecha_entrada} . Por: #{autor}
 
-            aside.col-sm-12.col-md-4.col-lg-3.publicidad
+            aside.col-sm-12.col-md-4.col-lg-3.publicidad(role="contentinfo")
                 h3 Publicidad
-                img(src="img/bannerCuadrado.png", alt="Tu banner publicitario aquí")
+                img(src="img/bannerCuadrado.webp", alt="Tu banner publicitario aquí" role="banner")
                 .row.mt-3
                     .col-sm.agenda
                         h3 Agenda - Próximos eventos
@@ -45,7 +45,7 @@ block contenido
                             else
                                 li.list-group-item No hay eventos
                 section.row.mt-3
-                    .col-sm
+                    .col-sm(role="contentinfo")
                         h3 ¿Qué tiempo hace hoy?
                         .elTiempo.shadow
                             .icono-tiempo

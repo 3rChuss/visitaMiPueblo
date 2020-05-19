@@ -2,6 +2,9 @@
     font-family: 'Staatliches', cursive;
     font-family: 'Covered By Your Grace', cursive;
     font-family: 'Open Sans', sans-serif;
+    --color-principal: #0A1826;
+    
+    --color-links: #293462;
 }
 html {
     scroll-behavior: smooth;
@@ -12,7 +15,7 @@ body {
 }
 h1, h2, h3 {
     font-family: 'Staatliches', cursive;
-    color: #15B9D5;
+    color: var(--color-encabezados);
 }
 h1 {
     font-size: 3.4rem;
@@ -24,10 +27,10 @@ h3 {
     font-size: 1.3rem;
 }
 a {
-    color: #15B9D5;
+    color: var(--color-links);
 }
 a:hover {
-    color: #15B9D5;
+    color: var(--color-encabezados);
 }
 svg {
     position: relative;
@@ -45,7 +48,7 @@ a > svg, li > svg {
 }
 /* =========================================================== MENU */
 .navegacion {
-    background-color: #15B9D5;
+    background-color: var(--color-links);
     height: auto;
 }
 .topmenu {
@@ -254,14 +257,17 @@ a > svg, li > svg {
 /* =========================================================== POSTS */
 
 article {
-    padding: 25px;
+    padding: 1rem;
+}
+.share-btn {
+    float: right;
 }
 .img-post {
     width: 100%;
     max-height: 350px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 30px;
+    margin-bottom: 1.2rem;
 }
 .img-post img {
     width: 100%;
@@ -270,7 +276,22 @@ article {
 .meta-cabecera {
     font-size: 0.7rem;
 }
-
+#post-page .publicidad {
+    margin-top: 1.5rem;
+}
+@media (max-width: 540px){
+    .share-btn {
+        float: none;
+        display: flex;
+        justify-content: center;
+    }
+    .meta-cabecera, #post-html h2 {
+        text-align: center;
+    }
+    #post-page .publicidad {
+        margin-top: 1.5rem;
+    }
+}
 /* =========================================================== DEIFONTES */
     /* =========================================================== GALERIA */
     .galeria img:hover {
@@ -742,8 +763,8 @@ i {
     bottom: 25px;
     right: 25px;
     display: none;
-    color: #15B9D5;
-    background: rgba(0,0,0,0.60);
+    color: var(--color-links);
+    background: rgba(255,255,255,0.60);
 }
 .back-to-top svg {
     margin: 0;

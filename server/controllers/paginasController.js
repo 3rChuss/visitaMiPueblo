@@ -44,6 +44,10 @@ exports.paginaFiestas = (req, res) => {
 }
 
 exports.paginaIDFiesta = (req, res) => {
+    // res.render('fiestas/', {
+    //     pagina: 'Fiestas y tradiciones',
+    //     usuario: req.user
+    // })
     res.render('fiestas/'+req.params.pagina, {
         pagina: 'Fiestas y tradiciones',
         usuario: req.user
