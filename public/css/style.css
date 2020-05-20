@@ -220,6 +220,7 @@ a > svg, li > svg {
 /* =========================================================== NOTICIARIO */
 .card-header {
     text-align: center;
+    background-color: transparent;
 }
 .noticias h5 {
     font-weight: 700;

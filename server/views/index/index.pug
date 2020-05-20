@@ -34,7 +34,7 @@ block contenido
 
             aside.col-sm-12.col-md-4.col-lg-3.publicidad(role="contentinfo")
                 h3 Publicidad
-                img(src="img/bannerCuadrado.webp", alt="Tu banner publicitario aquí" role="banner")
+                img(src="/img/bannerCuadrado.webp", alt="Tu banner publicitario aquí" role="banner")
                 .row.mt-3
                     .col-sm.agenda
                         h3 Agenda - Próximos eventos
@@ -49,7 +49,7 @@ block contenido
                         h3 ¿Qué tiempo hace hoy?
                         .elTiempo.shadow
                             .icono-tiempo
-                                img.animate-src(src='img/icons/weather.svg', alt="El tiempo en deifontes")
+                                img.animate-src(src='/img/icons/weather.svg', alt="El tiempo en deifontes")
                             .resumen-tiempo
                                 .row.justify-content-center.p-2
                                     .tempActual
@@ -59,7 +59,13 @@ block contenido
                                         .temps
                                             strong#maxima
                                             span#minima
-                            
-
+                section.row.mt-3#categorias
+                    .col-sm(role="list")
+                        h3 Categorías
+                        ul.list-group
+                            li.list-group-item.bg-light(class=( ruta === "/deporte" ? 'active' : '') ) #[a(href="/?f=deporte") DEPORTE]
+                            li.list-group-item.bg-light(class=( ruta === '/politica' ? 'active' : '') ) #[a(href="/politica") POLÍTICA]
+                            li.list-group-item.bg-light(class=( ruta === '/cultura' ? 'active' : '') ) #[a(href="/cultura") CULTURA]
+                            li.list-group-item.bg-light(class=( ruta === '/ciudadania' ? 'active' : '') ) #[a(href="/ciudadania") CIUDADANÍA]
                         
                         

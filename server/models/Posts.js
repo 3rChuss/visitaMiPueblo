@@ -18,6 +18,9 @@ const   Post = db.define('_posts', {
     html: {
         type: Sequelize.STRING
     },
+    categoria: {
+        type: Sequelize.STRING
+    },
     es_evento: {
         type: Sequelize.BOOLEAN
     },
