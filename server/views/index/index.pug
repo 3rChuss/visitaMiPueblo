@@ -2,8 +2,14 @@ extends ../layout/index
 block contenido
     include ../layout/partials/bannerPublicidad 
     main.container.mt-3.mb-5
+        if (filtro)
+            .row.breadcrumbs
+                .col
+                    h3 Mostrando resultados de #[span=filtro]
         .row
             .col-sm-12.col-md-8.col-lg-9(role="feed")
+                #fecha
+                    span Deifontes, #{fechaActual}
                 .row
                     each primera in entradas.splice(0,1)
                         .col-sm-12.col-md-12.p-2.mb-3.noticias(role="article")
@@ -15,7 +21,7 @@ block contenido
                                         h5.my-2.card-subtitle=primera.subtitulo
                                         p.card-text#post=primera.html.substr(0,200)
                                             |  . . .
-                                    blockquote.mb-0.p-1.blockquote-footer #{primera.fecha_entrada} . Por: #{autor}
+                                    blockquote.mb-0.p-1.blockquote-footer #{primera.fecha_entrada} . Por: #{primera._user.nombre}
                 .row
                     .col-12
                         h3 No te pierdas estas noticias
@@ -30,11 +36,12 @@ block contenido
                                     h5.my-2.card-subtitle=entrada.subtitulo
                                     p.card-text#post=entrada.html.substr(0,150)
                                         |  . . .
-                                blockquote.mb-0.p-1.blockquote-footer #{entrada.fecha_entrada} . Por: #{autor}
+                                blockquote.mb-0.p-1.blockquote-footer #{entrada.fecha_entrada} . Por: #{entrada._user.nombre}
 
-            aside.col-sm-12.col-md-4.col-lg-3.publicidad(role="contentinfo")
-                h3 Publicidad
-                img(src="/img/bannerCuadrado.webp", alt="Tu banner publicitario aquí" role="banner")
+            aside.col-sm-12.col-md-4.col-lg-3
+                .publicidad(role="contentinfo")
+                    h3 Publicidad
+                    img(src="/img/bannerCuadrado.webp", alt="Tu banner publicitario aquí" role="banner")
                 .row.mt-3
                     .col-sm.agenda
                         h3 Agenda - Próximos eventos
@@ -44,7 +51,16 @@ block contenido
                                     li.list-group-item.bg-light #[a(href=`post/${evento.id}?titulo=${evento.titulo}` class=( evento.clase ? evento.clase : '' )) #{evento.titulo.substr(0,20)}... #[span.float-right.text-info #{evento.fecha_evento}]]
                             else
                                 li.list-group-item No hay eventos
-                section.row.mt-3
+                .row.mt-3#categorias
+                    .col-sm(role="list")
+                        h3 Categorías
+                        ul.list-group
+                            li.list-group-item.bg-light #[a(href="/") TODAS]
+                            li.list-group-item.bg-light(class=( filtro === "deporte" ? 'active' : '') ) #[a(href="/?f=deporte") DEPORTE]
+                            li.list-group-item.bg-light(class=( filtro === 'politica' ? 'active' : '') ) #[a(href="/?f=politica") POLÍTICA]
+                            li.list-group-item.bg-light(class=( filtro === 'cultura' ? 'active' : '') ) #[a(href="/?f=cultura") CULTURA]
+                            li.list-group-item.bg-light(class=( filtro === 'ciudadania' ? 'active' : '') ) #[a(href="/?f=ciudadania") CIUDADANÍA]
+                .row.mt-3
                     .col-sm(role="contentinfo")
                         h3 ¿Qué tiempo hace hoy?
                         .elTiempo.shadow
@@ -59,13 +75,5 @@ block contenido
                                         .temps
                                             strong#maxima
                                             span#minima
-                section.row.mt-3#categorias
-                    .col-sm(role="list")
-                        h3 Categorías
-                        ul.list-group
-                            li.list-group-item.bg-light(class=( ruta === "/deporte" ? 'active' : '') ) #[a(href="/?f=deporte") DEPORTE]
-                            li.list-group-item.bg-light(class=( ruta === '/politica' ? 'active' : '') ) #[a(href="/politica") POLÍTICA]
-                            li.list-group-item.bg-light(class=( ruta === '/cultura' ? 'active' : '') ) #[a(href="/cultura") CULTURA]
-                            li.list-group-item.bg-light(class=( ruta === '/ciudadania' ? 'active' : '') ) #[a(href="/ciudadania") CIUDADANÍA]
                         
                         

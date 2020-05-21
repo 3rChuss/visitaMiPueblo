@@ -3,12 +3,14 @@ const bcrypt    =   require('bcryptjs');
 
 exports.adminPanel = (req, res) => {
     let contenido = req.query.contenido;
+    let pagina = req.query.titulo ? req.query.titulo : 'Panel de control'
     let usuario = req.user;
+    
     if (usuario.role === 'admin' ) {
         let usuarios = getUsuarios()
         .then(usuarios => {
             res.render('admin', {
-                pagina: 'Panel de control',
+                pagina,
                 contenido,
                 usuario,
                 usuarios
@@ -16,7 +18,7 @@ exports.adminPanel = (req, res) => {
         });
     } else {
         res.render('admin', {
-            pagina: 'Panel de control',
+            pagina,
             contenido,
             usuario
         })

@@ -21,6 +21,7 @@ exports.paginaPost = (req, res) => {
 
 exports.nuevoPost = (req, res) => {
     let { titulo, subtitulo, img_url, es_evento, fecha_evento, html } = req.body;
+    let fechaEvento = new Date(fecha_evento).toLocaleDateString();   
     // Comprobar los campos no oblgatorios
     if (!subtitulo) subtitulo = "";
     es_evento == "on" ? es_evento = 1 : es_evento = 0;
@@ -32,9 +33,9 @@ exports.nuevoPost = (req, res) => {
         img_url,
         html,
         es_evento,
-        fecha_evento,
+        fecha_evento: fechaEvento,
         fecha_entrada: new Date().toLocaleDateString(),
     })
-    .then( resumen => res.redirect('/nuevo-post?titulo=Entrada Enviada 👏🏼') )
+    .then( resumen => res.redirect('/_admin?titulo=Entrada Enviada 👏🏼') )
     .catch( err => console.log(err) )
 }

@@ -18,11 +18,10 @@ block contenido
                             p.meta-cabecera Actualizado el 
                                 time(datetime=post.fecha_entrada)=post.fecha_entrada
                                 span.share-btn
-                                    a.btn.btn-sm.btn-primary.mr-2(href="https://twitter.com/share?ref_src=twsrc%5Etfw" data-show-count="false") Twietéalo
-                                        i.fab.fa-twitter.fa-lg.float-left
+                                    a(href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-hashtags="deifontes" data-lang="es" data-show-count="false")
                                     script(async src="https://platform.twitter.com/widgets.js" charset="utf-8")
-                                    a.btn.btn-sm.btn-primary(href="#") Comparte
-                                        i.fab.fa-facebook.fa-lg.float-left
+                                    //- a.btn.btn-sm.btn-primary(href="#") Comparte
+                                    //-     i.fab.fa-facebook.fa-lg.float-left
                             .contenido-post#post
                                 p.d-none=post.html
 

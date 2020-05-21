@@ -18,10 +18,13 @@
                 .col
                     .form-group.mb-2
                         label(for="fechaEvento" class="control-label") Fecha del evento
-                        input(type="text" class="form-control" id="fechaEvento" name="fecha_evento" placeholder="DD/MM/AAAA" data-provide="datepicker" data-date-format="dd/mm/yyyy" data-date-autoclose="true")
+                        input(type="text" class="form-control" id="fechaEvento" name="fecha_evento" placeholder="DD/MM/AAAA" data-provide="datepicker" data-date-autoclose="true")
             .form-group.mb-2
                 label(for="html") Entrada de la noticia, #[small se permite HTML]
                 textarea#html(name="html", cols="30", rows="10" class="form-control")
+            .form-group.mb-2
+                label(for="categoria") Categorías, #[small separa las categorías por comas]
+                input(type="text" id="categoria" name="categoria" class="form-control form-control-lg")
             button.btn.btn-primary.btn-sm-block(type="submit" required) Enviar entrada
 
     .col-md-3
@@ -31,4 +34,4 @@
                 h3.card-title.text-center Ayuda ❓
                 p.card-text
                     |Para subir imágenes, dirígete a ➡️ #[a.text-muted(href="https://imgur.com/upload") https://imgur.com/] selecciona la fotográfia que deseas insertar y espera que se suba. #[br]
-                    |Cuando visualizes la foto, si pasas el ratón por encima, en la parte superior derecha aparecerá la URL, haz click en #[strong copy] y pegalo en el campo de URL.
+                    |Cuando visualizes la foto, si pasas el ratón por encima, en la parte superior derecha aparecerá la URL, haz click en #[strong copy] y pégala en el campo de URL.

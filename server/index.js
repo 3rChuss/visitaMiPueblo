@@ -8,6 +8,7 @@ const       express = require('express'),
             flash   = require('connect-flash'),
             configs = require('./config'),
             db      = require('./config/database'),
+            moment  = require('moment'),
 
         // Models
             User    = require('./models/Users');
@@ -67,7 +68,9 @@ require('dotenv').config({ path: 'variables.env' });
         res.locals.currentUser = req.user;
         res.locals.error = req.flash('error');
         res.locals.mensaje = req.flash('mensaje');
-        res.locals.fechaActual = new Date();
+        moment.locale('es');
+        res.locals.fechaActual = moment().format('LLL');
+        res.locals.anio = new Date().getFullYear();
         res.locals.ruta =  req.path;
         return next();
     })

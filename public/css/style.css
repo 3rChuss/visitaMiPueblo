@@ -59,7 +59,7 @@ a > svg, li > svg {
     display: none;
 }
 .topmenu a:hover {
-    color: rgba(0,0,0,0.60);
+    color: #2bc0e4;
 }
 .colapsable {
     display: flex;
@@ -158,7 +158,7 @@ a > svg, li > svg {
 }
 .submenu .active {
     background-color: #fff;
-    border-radius: 5px;
+    border-radius: 0.25rem;
     color: rgba(0,0,0,0.60) !important;
 }
 @media (max-width: 540px){
@@ -255,6 +255,22 @@ a > svg, li > svg {
     text-decoration: line-through;
     color: #b6b6b6 !important;
 }
+.list-group-item {
+    transition: 0.3s;
+}
+#categorias li:hover {
+    background-color: var(--color-principal) !important;
+    cursor: pointer;
+}
+#categorias li:hover a {
+    color: #fff;
+}
+#fecha {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: right;
+    color: #555555;
+}
 /* =========================================================== POSTS */
 
 article {
@@ -280,6 +296,7 @@ article {
 #post-page .publicidad {
     margin-top: 1.5rem;
 }
+
 @media (max-width: 540px){
     .share-btn {
         float: none;
@@ -392,6 +409,7 @@ article {
         height: auto;
         max-height: 300px;
         display: flex;
+        border-radius: 5px;
     }
     .icono-tiempo {
         display: flex;
@@ -400,6 +418,7 @@ article {
     }
     .icono-tiempo img {
         margin-left: -10px;
+        width: 100%;
     }
     .elTiempo .icono-tiempo {
         width: 300px;
@@ -588,6 +607,7 @@ article {
 .publicidad img {
     width: 100%;
     max-width: 100%;
+    border-radius: 0.25rem;
 }
 .op-1 {
     opacity: 0.6;
@@ -692,9 +712,7 @@ header .nav a {
 #loginBtn, #loginBox{
     float: right;
 }
-.form-control, .form-check-label {
-    font-size: 0.6rem;
-}
+
 #loginForm button, #loginBtn button {
     font-size: 0.6rem;
 }
