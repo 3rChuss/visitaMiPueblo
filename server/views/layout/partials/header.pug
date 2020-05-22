@@ -4,14 +4,14 @@ header
             .row.justify-content-center-justify-content-md-between.align-item-center.py-4
                 .col-4.d-flex
                     a(href="/")
-                        img#logo(src="/img/logoPueblo.png", alt="Visita Mi Pueblo" class="img-fluid")
+                        img#logo(src="/img/logoPueblo.png", alt="Visita Mi Pueblo" class="img-fluid", loading="lazy")
                 .col-8.my-auto
                     nav.nav.topmenu#menu
                         a.icon(href="javascript:void(0);" onclick="collapse()")
                             i.fa.fa-bars
                         .colapsable
                             a.nav-link(href="/", class=(ruta === '/' || ruta.includes('/post') ? 'active' : '')) Noticias
-                            img(src="/img/logoDeifontes.svg", alt="Logo" class="escudo")
+                            img(src="/img/logoDeifontes.svg", alt="Logo" class="escudo", loading="lazy")
                             a.nav-link(href="/deifontes", class=((ruta.includes('/deifontes')) ? 'active' : '' )) Deifontes
                             a.nav-link(href="/que-ver", class=(ruta === '/que-ver' ? 'active' : '')) Que ver
                             a.nav-link(href="/fiestas", class=(ruta === '/fiestas' ? 'active' : '')) Fiestas

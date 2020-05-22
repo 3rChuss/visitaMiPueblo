@@ -265,6 +265,7 @@ a > svg, li > svg {
 #categorias li:hover a {
     color: #fff;
 }
+
 #fecha {
     font-size: 0.8rem;
     font-weight: 700;

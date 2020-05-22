@@ -9,6 +9,7 @@ const       express = require('express'),
             configs = require('./config'),
             db      = require('./config/database'),
             moment  = require('moment'),
+        compression = require('compression'),
 
         // Models
             User    = require('./models/Users');
@@ -45,6 +46,9 @@ require('dotenv').config({ path: 'variables.env' });
 
     // Validar si estamos en desarrollo o en produccion
     const config =  configs[app.get('env')]
+
+    //Inicializamos la compresion gzip
+    app.use(compression());
 
     // Inicializamos bodyParser
     app.use(bodyParser.urlencoded({extended: true}));
