@@ -53,28 +53,3 @@ exports.mostrarPosts = async (req, res) => {
         filtro
     })
 }
-
-const getEntradas = async () => {
-    return await Post.findAll({
-        order: [
-            ['id', 'DESC']
-            ]
-        })
-}
-
-const getAutor = async () => {
-    Users.belongsTo(Post, { foreignKey: 'id'});
-    return Users.findOne(
-        {
-            include: Post,
-            through: { attributes:['id_autor'] }
-        })
-        .then( autor => { return autor; });
-}
-
-const getEntradasFiltradas = async () => { 
-    return await Post.findAll({
-        order: [ ['id', 'DESC'] ],
-        where: { categoria: { [Op.like]: '%' + req.params.categoria + '%' } }
-        })
-}

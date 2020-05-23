@@ -26,9 +26,9 @@ exports.adminPanel = (req, res) => {
 }
 
 // Registrar
-const salt = '$2a$10$PUAehJRPGkF9HUbahdC7R.';
 exports.registrarUsuario = async (req, res) => {
     let { nombre, email, passwd, role } = req.body;
+    let salt = bcrypt.genSaltSync(10);
     let hash = bcrypt.hashSync(passwd, salt);
 
     const nuevoUser = Users.create({

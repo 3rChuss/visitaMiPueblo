@@ -1,21 +1,31 @@
 const Post    = require('../models/Posts');
-exports.mostrarPosts = async (req, res) => {
+const Users = require('../models/Users');
+
+exports.mostrarPost = async (req, res) => {
     let titulo = "";
     if(req.query.titulo) titulo = req.query.titulo;    
 
-    const post = await Post.findByPk(req.params.id)
+    //Relacionamos las tablas
+    Users.hasMany(Post, { foreignKey: 'id_autor'} )
+    Post.belongsTo(Users, { foreignKey: 'id_autor'});
+    let url = req.protocol + '://' + req.get('host') + req.originalUrl;
+
+    const post = await Post.findByPk(req.params.id, {include: [Users]})
     res.render('post/index', {
         pagina: titulo,
-        post
+        post,
+        usuario: req.user,
+        url
     })
 }
 
 exports.paginaPost = (req, res) => {
     let titulo = "";
+
     if (req.query.titulo) titulo = req.query.titulo;
         else titulo = "Crear nueva publicación 📝"
     res.render('admin', {
-        pagina: titulo
+        pagina: titulo,
     });
 }
 

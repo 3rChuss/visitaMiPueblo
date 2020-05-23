@@ -21,7 +21,10 @@ block contenido
                                         h5.my-2.card-subtitle=primera.subtitulo
                                         p.card-text#post=primera.html.substr(0,200)
                                             |  . . .
-                                    blockquote.mb-0.p-1.blockquote-footer #{primera.fecha_entrada} . Por: #{primera._user.nombre}
+                                    blockquote.mb-0.p-1.blockquote-footer 
+                                        script
+                                            -var fecha = new Date(primera.fecha_entrada).toLocaleDateString();
+                                        | #{fecha}. Por: #{primera._user.nombre}
                 .row
                     .col-12
                         h3 No te pierdas estas noticias
@@ -36,7 +39,10 @@ block contenido
                                     h5.my-2.card-subtitle=entrada.subtitulo
                                     p.card-text#post=entrada.html.substr(0,150)
                                         |  . . .
-                                blockquote.mb-0.p-1.blockquote-footer #{entrada.fecha_entrada} . Por: #{entrada._user.nombre}
+                                blockquote.mb-0.p-1.blockquote-footer
+                                    script
+                                        -var fecha1 = new Date(entrada.fecha_entrada).toLocaleDateString();
+                                    | #{fecha1}. Por: #{entrada._user.nombre}
 
             aside.col-sm-12.col-md-4.col-lg-3
                 .publicidad(role="contentinfo")

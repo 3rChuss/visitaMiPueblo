@@ -15,17 +15,13 @@ block contenido
                     article#post-html(itemtype="https://schema.org/CreativeWork")
                         header.mb-3
                             h2=post.subtitulo
+                            blockquote.mb-0.blockquote-footer.text-left Por: #{post._user.nombre}
                             p.meta-cabecera Actualizado el 
                                 time(datetime=post.fecha_entrada)=post.fecha_entrada
-                                span.share-btn
-                                    a(href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-hashtags="deifontes" data-lang="es" data-show-count="false")
-                                    script(async src="https://platform.twitter.com/widgets.js" charset="utf-8")
-                                    //- a.btn.btn-sm.btn-primary(href="#") Comparte
-                                    //-     i.fab.fa-facebook.fa-lg.float-left
                             .contenido-post#post
                                 p.d-none=post.html
 
-            aside.col-sm-4.publicidad
+            aside.col-sm-4.publicidad(role="contentInfo")
                 .col-sm-12.post-social
                     section.mb-4.publicidad.post-img
                         h3 Publicidad
@@ -41,6 +37,15 @@ block contenido
                                 i.far.fa-newspaper.fa-lg.float-left
                             li.list-group-item #[a(href="https://www.ideal.es/temas/lugares/deifontes.html" target="_blank" nofollow) Deifontes en el Ideal]
                                 i.far.fa-newspaper.fa-lg.float-left
+                    section.mb-2
+                        h3 Comparte en las redes sociales
+                        #share-btns
+                            #fb-root
+                            script(async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v7.0&appId=235554917737172&autoLogAppEvents=1")
+                            span.fb-share-button(data-href=url, data-layout='button_count', data-size='large') 
+                                a.fb-xfbml-parse-ignore(target='_blank', href='https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&src=sdkpreparse') Compartir
+                            a(href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-hashtags="deifontes" data-lang="es" data-show-count="false")
+                            script(async defer src="https://platform.twitter.com/widgets.js" charset="utf-8" crossorigin)
 
         .row.my-2
             .col-sm-12.text-center.publicidad

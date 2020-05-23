@@ -277,8 +277,9 @@ a > svg, li > svg {
 article {
     padding: 1rem;
 }
-.share-btn {
-    float: right;
+#share-btns {
+    display: flex;
+    justify-content: flex-start;
 }
 .img-post {
     width: 100%;
@@ -519,8 +520,8 @@ article {
     margin-top: 5px;
     text-transform: uppercase;
 }
-.hidetext {
-    -webkit-text-security: disc;
+#botonera, #verPasswrd {
+    cursor: pointer;
 }
 /* =========================================================== OTHERS */
 

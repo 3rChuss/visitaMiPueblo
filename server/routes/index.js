@@ -17,7 +17,7 @@ module.exports = function() {
 
     // Posts
     router.get('/', inicioC.mostrarPosts);
-    router.get('/post/:id', postsC.mostrarPosts);
+    router.get('/post/:id', postsC.mostrarPost);
     router.get('/nuevo-post', postsC.paginaPost);
     router.post('/nuevo-post', postsC.nuevoPost);
 

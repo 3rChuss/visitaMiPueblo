@@ -19,14 +19,15 @@
                                     input(type="text" name="nombre" disabled="disabled" value=user.nombre)
                                 td
                                     input(type="email" name="email" disabled="disabled" value=user.email)
-                                td(class="hidetext")
-                                    input(type="password" name="passwd" disabled="disabled" value=user.passwd.substr(0,10))
+                                td.d-flex
+                                    input#passwdInput(type="password" name="passwd" disabled="disabled" value=user.passwd.substr(0,10) aria-describedby="basic-addon1")
+                                    span#verPasswrd(title="Mostrar contraseña") 👁
                                 td
                                     select#role(name="role" required disabled="disabled")
                                         option(value="" disabled selected)=user.role
                                         option(value="writer") Escritor
                                         option(value="admin") Administrador
-                                td #[span#eliminar-user ❌] #[span#editar-user ✏️] #[button#aceptar-user.btn-outline-success(type="Submit" style="display:none") ✔️]
+                                td#botonera #[span#editar-user(title="Editar Usuario") ✏️] #[span#eliminar-user(title="Eliminar Usuario" style="display:none") 🚽] #[button#aceptar-user.btn-outline-success(type="Submit" style="display:none" title="Aceptar") ✔️] #[span#cancelar-edit(title="Cancelar Cambios" style="display:none") ❌]
     .row.align-items-center
         .col-1
             button#btn-form-habilitar.btn.btn-outline-primary ➕

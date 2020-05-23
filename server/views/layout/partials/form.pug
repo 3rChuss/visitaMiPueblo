@@ -9,8 +9,7 @@ section#login
                         a(href="/salir") #[li 🏃🏻 Salir]
                 else
                     #loginBtn
-                        if ruta === '/'
-                            button.btn.btn-sm.btn-light#btn-login Login
+                        button.btn.btn-sm.btn-light#btn-login Login
             #loginForm.fadedfx
                 form.form-inline(action="/login", method="post", name="signin")
                     .form-group.col-12.justify-content-end

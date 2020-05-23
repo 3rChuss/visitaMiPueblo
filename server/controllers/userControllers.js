@@ -1,6 +1,5 @@
 
-const       bcrypt  =   require('bcryptjs'),
-        passport    =   require('passport');
+const       bcrypt  =   require('bcryptjs');
 
 const       User    =   require('../models/Users');
 
@@ -13,10 +12,9 @@ exports.nuevoUsuario = async ({ nombre, email, passwd }) => {
 }
 
 // Login y Registrar
-const salt = '$2a$10$PUAehJRPGkF9HUbahdC7R.';
-
 exports.loginUsuario = (obj, done) => {
         let { email, passwd } = obj;
+        let salt = bcrypt.genSaltSync(10);
         let hash = bcrypt.hashSync(passwd, salt);
         const user = obtenerUsuario({email, 'passwd': hash})
         return user;
