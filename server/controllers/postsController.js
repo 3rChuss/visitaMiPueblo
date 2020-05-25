@@ -3,16 +3,15 @@ const Users = require('../models/Users');
 
 exports.mostrarPost = async (req, res) => {
     let titulo = "";
-    if(req.query.titulo) titulo = req.query.titulo;    
-
+    if(req.query.titulo) titulo = req.query.titulo;
+    
     //Relacionamos las tablas
     Users.hasMany(Post, { foreignKey: 'id_autor'} )
     Post.belongsTo(Users, { foreignKey: 'id_autor'});
-    let url = req.protocol + '://' + req.get('host') + req.originalUrl;
-
+    let url = decodeURI(req.protocol + '://' + req.get('host') + req.originalUrl);
     const post = await Post.findByPk(req.params.id, {include: [Users]})
     res.render('post/index', {
-        pagina: titulo,
+        pagina: post.titulo,
         post,
         usuario: req.user,
         url

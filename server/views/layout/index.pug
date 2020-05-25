@@ -5,10 +5,14 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0 shrink-to-fit=no")
         meta(name="description" content="Periódico local para pequeños pueblos, creado originalmente para Deifontes, Granada")
         meta(name="Author" content="Jesus Abril // @3rChuss")
+        link(rel='shortcut icon', href='/img/iconos/favicon.ico', type='image/x-icon')
+        link(rel='apple-touch-icon', href='/img/iconos/apple-touch-icon.png')
+        link(rel='apple-touch-icon', sizes='76x76', href='/img/iconos/apple-touch-icon-76x76.png')
+        link(rel='apple-touch-icon', sizes='180x180', href='/img/iconos/apple-touch-icon-180x180.png')
         link(defer rel="dns-prefetch stylesheet" href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh', crossorigin='anonymous')
         script(defer rel="dns-prefetch" src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.slim.min.js', integrity='sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs=', crossorigin='anonymous')
         script(defer rel="dns-prefetch" src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6', crossorigin='anonymous')
-        link(rel='preload stylesheet' href='https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Open+Sans:wght@400;700&family=Staatliches&display=swap', as="font", crossorigin)
+        link(defer rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Open+Sans:wght@400;700&family=Staatliches&display=swap', as="font", crossorigin)
         link(rel="preload", href="/css/style.css" as="style" onload="this.rel='stylesheet'")
         title #{pagina} | #{titulo}
     body
@@ -19,6 +23,7 @@ html(lang="en")
         a#back-to-top.btn.btn-lg.back-to-top(href='#', role='button')
             i.fas.fa-chevron-up
 
+        script(rel="preload" src="/js/cookies.js")
         script(rel="preload" src="/js/index.js")
         script(rel="dns-prefetch" src="/js/apiAemet.js")
         script(rel="dns-prefetch" src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js', integrity='sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=', crossorigin='anonymous')

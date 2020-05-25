@@ -22,6 +22,7 @@ module.exports = function() {
     router.post('/nuevo-post', postsC.nuevoPost);
 
     // Páginas estáticas
+    router.get('/politica-privacidad', paginasC.paginaPoliticaPrivacidad);
     router.get('/deifontes', paginasC.paginaDeifontes);
     router.get('/deifontes/:pagina', paginasC.paginaID);
     router.get('/que-ver', paginasC.paginaQuever);
@@ -29,7 +30,6 @@ module.exports = function() {
     router.get('/fiestas/:pagina', paginasC.paginaIDFiesta);
 
     //Usuarios
-    //router.get('/login', usersC.login);
     router.post('/login', passport.authenticate('local-signin', {
         successRedirect: '/_admin',
         failureRedirect: '/#login?status=FAILURE'

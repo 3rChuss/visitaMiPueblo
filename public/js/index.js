@@ -36,12 +36,15 @@ const backToTop = document.querySelector('#back-to-top');
   * Events Listeners
   */
 
- document.addEventListener('DOMContentLoaded', () => {
+ document.addEventListener('DOMContentLoaded', (e) => {
     if ( document.location.pathname === '/')
         cargarDatosAemet();
     
     loginBtn.addEventListener('click', mostrarForm);
     window.onscroll = function() {this.scrollToTop()}
+
+    
+    setTimeout(console.log("%cPARA! Estás apunto de entrar en un mundo del que no podrás SALIR! \nSígueme en twitter: 'https://twitter.com/3rChuss' ", "font-size: 25px; color: #FA45FF;" ) , 0);
 });
 
 function scrollToTop () {

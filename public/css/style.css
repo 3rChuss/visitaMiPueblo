@@ -739,6 +739,38 @@ footer .nav a,
     color: black;
 }
 
+#cookies {
+    flex-wrap: nowrap;
+    justify-content: center;
+    background-color: rgba(20,20,20,0.8);
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+    padding: 1rem;
+    width: 100%;
+    z-index: 3;
+}
+#cookies button {
+    margin: 0 15px;
+}
+#cookies p {
+    margin: 0;
+    font-size: 1.2rem;
+}
+#cookies a {
+    color: #2bc0e4;
+}
+#btn-cookie-aceptar {
+    margin: 0 1rem;
+}
+#cookies-opciones label {
+    margin-right: 15px;
+}
+#cookies-opciones input {
+    margin-right: 5px;
+}
 @media (min-width:768px) and (max-width: 1024px) {
     .m--100 {
         margin-top: -30px;
@@ -761,6 +793,13 @@ footer .nav a,
     }
     #logo {
         width: 75%;
+    }
+    #cookies p {
+        margin: 0;
+        font-size: 1rem;
+    }
+    #btn-cookie-aceptar {
+        margin: 0;
     }
 }
 @media (min-width:1024px) and (max-width: 1280px ) {

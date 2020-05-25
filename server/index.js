@@ -27,10 +27,12 @@ require('dotenv').config({ path: 'variables.env' });
     app.set('view engine', 'pug');
     // Views
     app.set('views', path.join(__dirname, './views'));
+    const cacheTime = 86400000 * 30;
     // Archivos estaticos
     app.use(express.static('public', {
         etag: true, // Just being explicit about the default.
         lastModified: true,  // Just being explicit about the default.
+        maxAge: cacheTime,
         setHeaders: (res, path) => {
             const hashRegExp = new RegExp('\\.[0-9a-f]{8}\\.');
             if (path.endsWith('.html')) {
@@ -55,6 +57,7 @@ require('dotenv').config({ path: 'variables.env' });
     app.use(bodyParser.json());
 
     //Inicializamos passport y express sessions
+    app.set('trust proxy', 1)
     app.use(require('express-session')({
         secret: 'Hola Deifontes!',
         resave: false,
@@ -89,5 +92,4 @@ require('dotenv').config({ path: 'variables.env' });
 
     app.listen(port, host, () => {
         console.log('Servidor funcionando')
-        console.log(port + ' : ' + host);
     });

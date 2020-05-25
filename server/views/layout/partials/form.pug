@@ -1,4 +1,4 @@
-section#login
+section#login.mt-3
     .row.align-item-center.mb-2
         .col
             #loginBox
@@ -17,6 +17,7 @@ section#login
                         input.form-control.mb-2#email(type="text" placeholder="tu@correo.com" autocomplete required name="email")
                         label.sr-only(for="passw")
                         input.form-control.mb-2#passw(type="password" autocomplete required placeholder="contraseña" name="passwd")
+                    .form-group.col-12.justify-content-end
                         input#recordar(type="checkbox" name="recordarUser")
                         label.form-check-label(for="recordar") Recuérdame 
                         button.btn.btn-sm.btn-primary.float-right(type="Submit") Entrar
