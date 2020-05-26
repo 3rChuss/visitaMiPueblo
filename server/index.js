@@ -10,6 +10,8 @@ const       express = require('express'),
             db      = require('./config/database'),
             moment  = require('moment'),
         compression = require('compression'),
+            https   = require('https'),
+                fs  = require('fs'),
 
         // Models
             User    = require('./models/Users');
@@ -44,7 +46,6 @@ require('dotenv').config({ path: 'variables.env' });
             }
         },
     }));
-    
 
     // Validar si estamos en desarrollo o en produccion
     const config =  configs[app.get('env')]
@@ -89,6 +90,14 @@ require('dotenv').config({ path: 'variables.env' });
 // Servidor
     const host = process.env.HOST || '0.0.0.0';
     const port = process.env.PORT || 3000;
+    
+    // https.createServer({
+    //     key: fs.readFileSync('./public/server.key'),
+    //     cert: fs.readFileSync('./public/server.cert')
+    // }, app)
+    //     .listen(port, host, () => {
+    //     console.log('Servidor funcionando')
+    // });
 
     app.listen(port, host, () => {
         console.log('Servidor funcionando')

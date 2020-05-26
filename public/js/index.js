@@ -1,3 +1,4 @@
+
 /**
  * Habilitar calendario si se trata de un evento al crear un POST
  */
@@ -78,3 +79,129 @@ function mostrarForm() {
         loginBtn.style.display = "block";
     }
   }
+
+
+/***
+ * HABILITAMOS EL SERVICE WORKER
+ */
+window.addEventListener('load', e => {
+    registerSW(); 
+  });
+
+async function registerSW() { 
+    if ('serviceWorker' in navigator) { 
+        try {
+            await navigator.serviceWorker.register('/sw.js')
+        } catch (err) {
+            alert('ServiceWorker a fallado'); 
+            console.log(err)
+        }
+    }
+
+    if ('PushManager' in window) {
+        try {
+            navigator.serviceWorker.ready
+                .then(function(registration) {
+                    showNotifications();
+                    registration.pushManager.getSubscription()
+                        .then(function (subscriptions) {
+                            if (subscriptions) {
+                                console.log(subscriptions)
+                            } else {
+                                console.log('No hay subscriptores')
+                            }
+                        })
+                })
+        } catch(err) {
+            console.error('No se ha podido habilitar las push ' + err);
+            
+        }
+    }
+}
+
+function showNotifications() {
+    Notification.requestPermission((result) => {
+        if (result === 'granted') {
+            navigator.serviceWorker.getRegistration().then((registration) => {
+                //subscribePush()
+                registration.showNotification('Vibration sample', {
+                    body: 'Buzz buzz',
+                    vibrate: [200, 100, 200, 100, 200, 100],
+                    tag: 'vibration-sample'
+                })
+            })
+        }
+    });
+  }
+
+function subscribePush () {
+    navigator.serviceWorker.ready.then(function(registration) {
+        if (!registration.pushManager) {
+            console.error('No soportado');
+            return false;
+        }
+
+        registration.pushManager.subscribe({
+            userVisibleOnly: true
+        })
+        .then(function (subscription) {
+            console.info('Push notification subscribed.');
+        })
+        .catch((error)  => {
+            console.error('Push notification subscription error: ', error);
+          });
+    })
+}
+
+function unsubscribePush () {
+    navigator.serviceWorker.ready
+        .then(registration => {
+            registration.pushManager.getSubscription()
+            .then(subscription => {
+                if(!subscription) {
+                    console.log('no se ha podido eliminar el registro push')
+                    return;
+                }
+
+                subscription.unsubscribe()
+                .then( () => {
+                    console.info('Push notification unsubscribed.');
+                    console.log(subscription);
+                    changePushStatus(false);
+                })
+                .catch(function (error) {
+                    console.error(error);
+                });
+            })
+            .catch(function (error) {
+                console.error('Failed to unsubscribe push notification.');
+            });
+        })
+  }
+
+let deferredPrompt;
+const addBtn = document.querySelector('#bannerInstalar');
+addBtn.style.display = 'none';
+
+window.addEventListener('beforeinstallprompt', (e) => {
+
+    e.preventDefault();
+    deferredPrompt = e;
+    addBtn.style.display = "flex";
+
+    addBtn.addEventListener('click', (e) => {
+        addBtn.style.display = "none";
+
+        deferredPrompt.prompt();
+
+        deferredPrompt.userChoise.then((choiceResult) => {
+            if (choiceResult.outcome === "accepted") {
+                console.log('Aceptado A2HS');
+               // registerSW();
+            } else {
+                console.log('No aceptado A2HS');
+            }
+            deferredPrompt = null;
+        })
+    })
+})

@@ -46,6 +46,21 @@ a > svg, li > svg {
 .table td {
     vertical-align: middle;
 }
+.instalar {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+#bannerInstalar {
+    position: relative;
+    height: 50px;
+    background-color: blueviolet;
+    color: white;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+}
+
 /* =========================================================== MENU */
 .navegacion {
     background-color: var(--color-links);

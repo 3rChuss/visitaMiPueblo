@@ -14,6 +14,8 @@ const   Auth        = require('../middleware/auth');
 
 
 module.exports = function() {
+    //Todo sobre https
+    //router.all('*', ensureSecure)
 
     // Posts
     router.get('/', inicioC.mostrarPosts);
@@ -42,3 +44,10 @@ module.exports = function() {
 
     return router;
 }
+
+function ensureSecure (req, res, next) {
+    if(req.secure){
+        return next();
+    }
+    res.redirect('https://' + req.hostname + ':3000' + req.url);
+  }

@@ -16,7 +16,7 @@ block contenido
                                 .card.shadow
                                     a(href=`post/${primera.id}?titulo=${primera.titulo}`)
                                         h2.card-header=primera.titulo
-                                        img(src=`${primera.img_url}`, class="card-img-top noticias-top", loading="lazy")
+                                        img(src=`${primera.img_url}`, class="card-img-top noticias-top", alt=`${primera.titulo}`,loading="lazy")
                                     .card-body#post-html
                                         h5.my-2.card-subtitle=primera.subtitulo
                                         p.card-text#post=primera.html.substr(0,200)
@@ -33,7 +33,7 @@ block contenido
                         .col-sm-12.col-md-12.col-lg-6.p-2.mb-3.noticias(role="article")
                             .card.shadow
                                 a(href=`post/${entrada.id}?titulo=${entrada.titulo}`)
-                                    img(src=`${entrada.img_url}`, class="card-img-top", loading="lazy")
+                                    img(src=`${entrada.img_url}`, class="card-img-top", alt=`${entrada.titulo}`, loading="lazy")
                                     h2.card-header=entrada.titulo
                                 .card-body#post-html
                                     h5.my-2.card-subtitle=entrada.subtitulo

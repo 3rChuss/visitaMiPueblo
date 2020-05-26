@@ -5,6 +5,7 @@ html(lang="en")
         meta(name="viewport", content="width=device-width, initial-scale=1.0 shrink-to-fit=no")
         meta(name="description" content="Periódico local para pequeños pueblos, creado originalmente para Deifontes, Granada")
         meta(name="Author" content="Jesus Abril // @3rChuss")
+        meta(name="theme-color" content="#f1f1f1")
         link(rel='shortcut icon', href='/img/iconos/favicon.ico', type='image/x-icon')
         link(rel='apple-touch-icon', href='/img/iconos/apple-touch-icon.png')
         link(rel='apple-touch-icon', sizes='76x76', href='/img/iconos/apple-touch-icon-76x76.png')
@@ -14,8 +15,10 @@ html(lang="en")
         script(defer rel="dns-prefetch" src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6', crossorigin='anonymous')
         link(defer rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Covered+By+Your+Grace&family=Open+Sans:wght@400;700&family=Staatliches&display=swap', as="font", crossorigin)
         link(rel="preload", href="/css/style.css" as="style" onload="this.rel='stylesheet'")
+        link(rel="manifest", href="/static/manifest.json")
         title #{pagina} | #{titulo}
     body
+        include partials/bannerInstalar
         include partials/header
         include partials/slider
         block contenido
