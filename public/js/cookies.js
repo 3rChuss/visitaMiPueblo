@@ -15,8 +15,8 @@ aceptar.addEventListener('click', () => {
 function setCookies(){
     let html = 
         `
-        COOKIES NECESARIAS AQUÍ <<<<---------->>>>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <!-- COOKIES NECESARIAS AQUÍ <<<<---------->>>> -->
+        <!-- Global site tag (gtag.js) - Google Analytics  -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-N17K6VN76M"></script>
         <script>
           window.dataLayer = window.dataLayer || [];
@@ -29,7 +29,7 @@ function setCookies(){
     if (cookiesInnecesarias.checked){
         html += 
             `<script>
-                COOKIES INNECESARIAS AQUÍ <<<<---------->>>>
+                <!-- COOKIES INNECESARIAS AQUÍ <<<<---------->>>> -->
             </script>`;
     }
     document.head.innerHTML += html;

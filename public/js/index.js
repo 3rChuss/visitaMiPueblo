@@ -102,7 +102,7 @@ async function registerSW() {
         try {
             navigator.serviceWorker.ready
                 .then(function(registration) {
-                    showNotifications();
+                    //subscribePush();
                     registration.pushManager.getSubscription()
                         .then(function (subscriptions) {
                             if (subscriptions) {
@@ -119,20 +119,19 @@ async function registerSW() {
     }
 }
 
-function showNotifications() {
-    Notification.requestPermission((result) => {
-        if (result === 'granted') {
-            navigator.serviceWorker.getRegistration().then((registration) => {
-                //subscribePush()
-                registration.showNotification('Vibration sample', {
-                    body: 'Buzz buzz',
-                    vibrate: [200, 100, 200, 100, 200, 100],
-                    tag: 'vibration-sample'
-                })
-            })
-        }
-    });
-  }
+// function showNotifications() {
+//     Notification.requestPermission((result) => {
+//         if (result === 'granted') {
+//             navigator.serviceWorker.getRegistration().then((registration) => {
+//                 registration.showNotification('Vibration sample', {
+//                     "body": 'Buzz buzz',
+//                     "vibrate": [200, 100, 200, 100, 200, 100, 400],
+//                     "tag": 'vibration-sample'
+//                 })
+//             })
+//         }
+//     })
+// }
 
 function subscribePush () {
     navigator.serviceWorker.ready.then(function(registration) {
@@ -141,9 +140,7 @@ function subscribePush () {
             return false;
         }
 
-        registration.pushManager.subscribe({
-            userVisibleOnly: true
-        })
+        registration.pushManager.subscribe({userVisibleOnly: true})
         .then(function (subscription) {
             console.info('Push notification subscribed.');
         })

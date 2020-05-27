@@ -1,8 +1,8 @@
 {
     "name": "Deifontes.Online",
     "short_name": "DeifontApp",
-    "theme_color": "#f1f1f1",
-    "background_color": "#0A1826",
+    "theme_color": "#0A1826",
+    "background_color": "#f1f1f1",
     "display": "minimal-ui",
     "scope": "/",
     "start_url": "/",

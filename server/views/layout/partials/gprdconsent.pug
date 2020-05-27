@@ -1,8 +1,11 @@
 #cookies.fadedfx
-    p Este sitio web usa cookies propias y de terceros para mejorar la experiencia del usuario, para saber más #[a(href="/politica-privacidad") vea la página Política de Privacidad]
-        button.btn.btn-warning.btn-sm#btn-cookie-aceptar Aceptar
-    .form-group#cookies-opciones
-        input#necesarias(type="checkbox", name="necesarias" checked disabled)
-        label(for="necesarias") Necesarias
-        input#cookies-innecesarias(type="checkbox", name="innecesarias" checked)
-        label(for="cookies-innecesarias") Innecesarias
+    .d-block
+        p Este sitio web usa cookies propias y de terceros para mejorar la experiencia del usuario, para saber más #[a(href="/politica-privacidad") vea la página Política de Privacidad]
+    .d-flex.justify-content-between.align-items-center.ml-3
+        #cookies-opciones
+            input#necesarias(type="checkbox", name="necesarias" checked disabled)
+            label(for="necesarias") Necesarias
+            input#cookies-innecesarias(type="checkbox", name="innecesarias" checked)
+            label(for="cookies-innecesarias") Innecesarias
+        #botonAceptar
+            button.btn.btn-warning.btn-sm#btn-cookie-aceptar Aceptar

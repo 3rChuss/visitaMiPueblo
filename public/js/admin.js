@@ -7,6 +7,7 @@ const inputPassword = document.querySelector('#passwdInput');
 const iconoEliminarUser = document.querySelector('#eliminar-user');
 const iconoCancelarEdit = document.querySelector('#cancelar-edit');
 const iconoEditarUser = document.querySelector('#editar-user');
+const botonEnviar = document.querySelector('#boton-enviar');
 
 btnHabilitaFormRegistrar.addEventListener('click', () => {
     formRegistrar.removeAttribute('disabled');
@@ -44,4 +45,20 @@ iconoVerPassword.addEventListener('click', () => {
     } else {
         inputPassword.type = "password";
     }
+})
+
+botonEnviar.addEventListener('click', () => {
+
+    Notification.requestPermission((result) => {
+        if (result === 'granted') {
+            navigator.serviceWorker.getRegistration().then((registration) => {
+                registration.showNotification('Vibration sample', {
+                    "body": 'Buzz buzz',
+                    "vibrate": [200, 100, 200, 100, 200, 100, 400],
+                    "tag": 'vibration-sample'
+                })
+            })
+        }
+    })
+    
 })

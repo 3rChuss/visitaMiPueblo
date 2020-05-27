@@ -755,7 +755,8 @@ footer .nav a,
 }
 
 #cookies {
-    flex-wrap: nowrap;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     background-color: rgba(20,20,20,0.8);
     color: #fff;
@@ -780,8 +781,10 @@ footer .nav a,
 #btn-cookie-aceptar {
     margin: 0 1rem;
 }
+
 #cookies-opciones label {
     margin-right: 15px;
+    margin-bottom: 0;
 }
 #cookies-opciones input {
     margin-right: 5px;
