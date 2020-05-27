@@ -50,6 +50,8 @@ iconoVerPassword.addEventListener('click', () => {
 botonEnviar.addEventListener('click', () => {
 
     Notification.requestPermission((result) => {
+        console.log('enviando notificacion');
+
         if (result === 'granted') {
             navigator.serviceWorker.getRegistration().then((registration) => {
                 registration.showNotification('Vibration sample', {
@@ -58,6 +60,8 @@ botonEnviar.addEventListener('click', () => {
                     "tag": 'vibration-sample'
                 })
             })
+        } else {
+            console.log('no enviada');
         }
     })
     

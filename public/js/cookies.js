@@ -24,7 +24,17 @@ function setCookies(){
           gtag('js', new Date());
         
           gtag('config', 'G-N17K6VN76M');
-        </script>`;
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMYHTLCXG6"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-MMYHTLCXG6');
+            </script>
+        `;
 
     if (cookiesInnecesarias.checked){
         html += 

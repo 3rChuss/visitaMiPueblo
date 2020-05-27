@@ -86,6 +86,9 @@ function mostrarForm() {
  */
 window.addEventListener('load', e => {
     registerSW(); 
+    setTimeout(() => {
+        askPermission();
+      }, 5000);
   });
 
 async function registerSW() { 
@@ -97,56 +100,46 @@ async function registerSW() {
             console.log(err)
         }
     }
-
-    if ('PushManager' in window) {
-        try {
-            navigator.serviceWorker.ready
-                .then(function(registration) {
-                    //subscribePush();
-                    registration.pushManager.getSubscription()
-                        .then(function (subscriptions) {
-                            if (subscriptions) {
-                                console.log(subscriptions)
-                            } else {
-                                console.log('No hay subscriptores')
-                            }
-                        })
-                })
-        } catch(err) {
-            console.error('No se ha podido habilitar las push ' + err);
-            
-        }
-    }
 }
 
-// function showNotifications() {
-//     Notification.requestPermission((result) => {
-//         if (result === 'granted') {
-//             navigator.serviceWorker.getRegistration().then((registration) => {
-//                 registration.showNotification('Vibration sample', {
-//                     "body": 'Buzz buzz',
-//                     "vibrate": [200, 100, 200, 100, 200, 100, 400],
-//                     "tag": 'vibration-sample'
-//                 })
-//             })
-//         }
-//     })
-// }
+function askPermission() {
+    if ('PushManager' in window) {
+        return new Promise(function(resolve, reject) {
+            const permissionResult = Notification.requestPermission(function(result) {
+                resolve(result);
+            });
+            if (permissionResult) {
+                permissionResult.then(resolve, reject);
+            }
+         })
+        .then(function(permissionResult) {
+            if (permissionResult !== 'granted') {
+                throw new Error('Sin permiso para notificaciones');
+            }
+        });
+    } else {
+        //No compatible
+        return;
+    }
+  }
 
 function subscribePush () {
-    navigator.serviceWorker.ready.then(function(registration) {
+    return navigator.serviceWorker.ready.then(function(registration) {
         if (!registration.pushManager) {
             console.error('No soportado');
             return false;
         }
-
-        registration.pushManager.subscribe({userVisibleOnly: true})
-        .then(function (subscription) {
-            console.info('Push notification subscribed.');
-        })
-        .catch((error)  => {
-            console.error('Push notification subscription error: ', error);
-          });
+        const subscribeOptions = {
+            userVisibleOnly: true,
+            applicationServerKey: urlBase64ToUint8Array(
+                'BPTziTpT-gZTTmOP3AeYJ7E3vfHgG-Y8fgJvPhU5E4ARVnplrVcrBEGPWc0FMfZS1Vly4GT8okqmKIxuNHHb6Lg'
+            )
+        };
+        return registration.pushManager.subscribe(subscribeOptions);
+    })
+    .then(function (pushSubscription) {
+        console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+        return pushSubscription;
     })
 }
 
@@ -175,6 +168,22 @@ function unsubscribePush () {
             });
         })
   }
+
+
+  
+// function showNotifications() {
+//     Notification.requestPermission((result) => {
+//         if (result === 'granted') {
+//             navigator.serviceWorker.getRegistration().then((registration) => {
+//                 registration.showNotification('Vibration sample', {
+//                     "body": 'Buzz buzz',
+//                     "vibrate": [200, 100, 200, 100, 200, 100, 400],
+//                     "tag": 'vibration-sample'
+//                 })
+//             })
+//         }
+//     })
+// }
 
 let deferredPrompt;
 const addBtn = document.querySelector('#bannerInstalar');
