@@ -86,9 +86,6 @@ function mostrarForm() {
  */
 window.addEventListener('load', e => {
     registerSW(); 
-    setTimeout(() => {
-        askPermission();
-      }, 5000);
   });
 
 async function registerSW() { 
@@ -143,6 +140,26 @@ function subscribePush () {
     })
 }
 
+/**
+ * urlBase64ToUint8Array
+ * 
+ * @param {string} base64String a public vavid key
+ */
+function urlBase64ToUint8Array(base64String) {
+    var padding = '='.repeat((4 - base64String.length % 4) % 4);
+    var base64 = (base64String + padding)
+        .replace(/\-/g, '+')
+        .replace(/_/g, '/');
+
+    var rawData = window.atob(base64);
+    var outputArray = new Uint8Array(rawData.length);
+
+    for (var i = 0; i < rawData.length; ++i) {
+        outputArray[i] = rawData.charCodeAt(i);
+    }
+    return outputArray;
+}
+
 function unsubscribePush () {
     navigator.serviceWorker.ready
         .then(registration => {
@@ -190,20 +207,18 @@ const addBtn = document.querySelector('#bannerInstalar');
 addBtn.style.display = 'none';
 
 window.addEventListener('beforeinstallprompt', (e) => {
-
     e.preventDefault();
     deferredPrompt = e;
-    addBtn.style.display = "flex";
 
+    addBtn.style.display = "flex";
     addBtn.addEventListener('click', (e) => {
         addBtn.style.display = "none";
 
         deferredPrompt.prompt();
-
-        deferredPrompt.userChoise.then((choiceResult) => {
-            if (choiceResult.outcome === "accepted") {
+        deferredPrompt.userChoice.then((choise) => {
+            if (choise.outcome === "accepted") {
                 console.log('Aceptado A2HS');
-               // registerSW();
+                subscribePush();
             } else {
                 console.log('No aceptado A2HS');
             }

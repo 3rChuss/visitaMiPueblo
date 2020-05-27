@@ -62,3 +62,27 @@ self.addEventListener("install", function(event) {
       });
     });
   };
+
+  self.addEventListener('push', function (e) {
+    console.log('[Service Worker] Push recivido');
+    console.log(`[Service Worker] Datos del push: ${e.data.text()}`);
+
+    const titulo = 'Pimera prueba';
+    const options = {
+      body: 'Funciona!',
+      icon: '/img/logoDeifontes.png'
+    }
+    
+    const notificationPromise = self.registration.showNotification(titulo, options);
+    e.waitUntil(notificationPromise);
+    })
+
+    self.addEventListener('notificationclick', function(event) {
+      console.log('[Service Worker] Notification click Received.');
+    
+      event.notification.close();
+    
+      event.waitUntil(
+        clients.openWindow('https://deifontes.online')
+      );
+    });
