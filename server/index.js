@@ -83,6 +83,21 @@ require('dotenv').config({ path: 'variables.env' });
         return next();
     })
     
+    const environment = process.env.NODE_ENV || 'development';
+    console.log(environment)
+    if (environment != 'development'){
+        // Redirigir a https siempre
+        app.use (function (req, res, next) {
+            if (req.secure) {
+                    // request was via https, so do no special handling
+                    next();
+            } else {
+                    // request was via http, so redirect to https
+                    res.redirect('https://' + req.headers.host + req.url);
+            }
+        });
+    }
+    
     // Cargar las rutas
     app.use('/', routes());
     require('./config/passport')(passport, User)
@@ -90,14 +105,6 @@ require('dotenv').config({ path: 'variables.env' });
 // Servidor
     const host = process.env.HOST || '0.0.0.0';
     const port = process.env.PORT || 3000;
-    
-    // https.createServer({
-    //     key: fs.readFileSync('./public/server.key'),
-    //     cert: fs.readFileSync('./public/server.cert')
-    // }, app)
-    //     .listen(port, host, () => {
-    //     console.log('Servidor funcionando')
-    // });
 
     app.listen(port, host, () => {
         console.log('Servidor funcionando')

@@ -32,11 +32,11 @@ a {
 a:hover {
     color: var(--color-encabezados);
 }
-svg {
+i {
     position: relative;
     top: 2px;
 }
-a > svg, li > svg {
+a > i, li > i {
     margin-right: 5px;
 }
 .escudo {
@@ -168,7 +168,7 @@ a > svg, li > svg {
     letter-spacing: 1.5px;
     color: #fff;
 }
-.submenu svg {
+.submenu i {
     margin-right: 5px;
 }
 .submenu .active {
@@ -191,7 +191,7 @@ a > svg, li > svg {
         padding: 0 1.25rem 1.25rem 1.25rem !important;
         background-color: rgba(0,0,0,.03);
     }
-    .card-body svg {
+    .card-body i {
         margin-right: 0;
         top: 0;
     }
@@ -825,12 +825,6 @@ footer .nav a,
         font-size: 1.3rem;
     }
 }
-
-i {
-    color: #DC135F;
-    font-size: 2rem;
-}
-
 .blockquote-footer {
     text-align: center;
     color: #DC135F;
@@ -844,6 +838,6 @@ i {
     color: var(--color-links);
     background: rgba(255,255,255,0.60);
 }
-.back-to-top svg {
+.back-to-top i {
     margin: 0;
 }
