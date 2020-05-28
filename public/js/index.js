@@ -82,8 +82,9 @@ function mostrarForm() {
 
 
 /***
- * HABILITAMOS EL SERVICE WORKER
+ * CARGAMOS EL SERVICE WORKER
  */
+
 window.addEventListener('load', e => {
     registerSW(); 
   });
@@ -98,6 +99,31 @@ async function registerSW() {
         }
     }
 }
+
+// Muestra el mensaje de A2HS
+let deferredPrompt;
+const addBtn = document.querySelector('#bannerInstalar');
+addBtn.style.display = 'none';
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+
+    addBtn.style.display = "flex";
+    addBtn.addEventListener('click', (e) => {
+        addBtn.style.display = "none";
+
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choise) => {
+            if (choise.outcome === "accepted") {
+                console.log('Aceptado A2HS');
+            } else {
+                console.log('No aceptado A2HS');
+            }
+            deferredPrompt = null;
+        })
+    })
+})
 
 function askPermission() {
     if ('PushManager' in window) {
@@ -186,6 +212,13 @@ function unsubscribePush () {
         })
   }
 
+window.addEventListener('appinstalled', (evt) => {
+    // Log install to analytics
+    console.log('INSTALL: Success');
+    subscribePush();
+  });
+
+
 
   
 // function showNotifications() {
@@ -201,28 +234,3 @@ function unsubscribePush () {
 //         }
 //     })
 // }
-
-let deferredPrompt;
-const addBtn = document.querySelector('#bannerInstalar');
-addBtn.style.display = 'none';
-
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-
-    addBtn.style.display = "flex";
-    addBtn.addEventListener('click', (e) => {
-        addBtn.style.display = "none";
-
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choise) => {
-            if (choise.outcome === "accepted") {
-                console.log('Aceptado A2HS');
-                subscribePush();
-            } else {
-                console.log('No aceptado A2HS');
-            }
-            deferredPrompt = null;
-        })
-    })
-})

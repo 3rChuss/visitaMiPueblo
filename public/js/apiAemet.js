@@ -230,8 +230,8 @@ function mostrarTempActual(datos){
 
     let hoy = new Date();
     let tempActual = '';
-
-    tempActual = datos.filter(x => hoy.getHours() === new Date(x.fint).getHours());    
+    
+    tempActual = datos.filter(x => hoy.getHours() <= new Date(x.fint).getHours());
     tempActualDiv.innerHTML = Math.round(tempActual[0].ta) + 'º';
     
 }
