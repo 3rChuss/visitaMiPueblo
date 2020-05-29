@@ -7,7 +7,8 @@ const   inicioC     = require('../controllers/inicioController'),
         postsC      = require('../controllers/postsController'),
         paginasC    = require('../controllers/paginasController'),
         adminC      = require('../controllers/adminController'),
-        usersC      = require('../controllers/userControllers');
+        usersC      = require('../controllers/userControllers'),
+        serverC     = require('../controllers/serverController');
 
 // MiddleWare
 const   Auth        = require('../middleware/auth');
@@ -42,12 +43,9 @@ module.exports = function() {
     router.post('/registrar', Auth.isLoggedIn, adminC.registrarUsuario)
     router.get('/salir', usersC.salir);
 
+    //Push Notifications
+    router.post('/api/save-subcription/', serverC.saveSubscription);
+    router.post('/api/trigger-push-msg/', serverC.triggerPushMessage)
+
     return router;
 }
-
-function ensureSecure (req, res, next) {
-    if(req.secure){
-        return next();
-    }
-    res.redirect('https://' + req.hostname + ':3000' + req.url);
-  }

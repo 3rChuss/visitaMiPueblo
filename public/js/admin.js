@@ -1,67 +1,94 @@
 const btnHabilitaFormRegistrar = document.querySelector('#btn-form-habilitar');
-const btnHabilitaFormEditar = document.querySelector('#editar-user');
 const formRegistrar = document.querySelector('#form-registrar'); 
 const passwdTable = document.querySelector('.hidetext');
 const iconoVerPassword = document.querySelector('#verPasswrd');
 const inputPassword = document.querySelector('#passwdInput');
-const iconoEliminarUser = document.querySelector('#eliminar-user');
-const iconoCancelarEdit = document.querySelector('#cancelar-edit');
-const iconoEditarUser = document.querySelector('#editar-user');
-const botonEnviar = document.querySelector('#boton-enviar');
+const iconoEliminarUser = document.querySelectorAll('#eliminar-user');
+const iconoCancelarEdit = document.querySelectorAll('#cancelar-edit');
+const iconoEditarUser = document.querySelectorAll('#editar-user');
+const iconoAceptarUser = document.querySelectorAll('#aceptar-user');
+const botonEnviar = document.querySelector('#enviar-noticia');
 
-btnHabilitaFormRegistrar.addEventListener('click', () => {
-    formRegistrar.removeAttribute('disabled');
-})
+if (document.URL.includes('panel-usuarios')) {
+    btnHabilitaFormRegistrar.addEventListener('click', () => {
+        formRegistrar.removeAttribute('disabled');
+    })
 
-btnHabilitaFormEditar.addEventListener('click', (e) => {
-    const userRow = e.target.parentElement.parentElement;
-    const inputs = userRow.getElementsByTagName('input');
-    for (let e of inputs) {
-        e.removeAttribute('disabled')
-    }
-    document.querySelector('#aceptar-user').style.display = "inherit";
-    iconoEliminarUser.style.display = "inline";
-    iconoCancelarEdit.style.display = "inline";
-    iconoEditarUser.style.display = "none";
-})
+    iconoEditarUser.forEach((element, i) => {
+        element.addEventListener('click', (e) => {
+            const userRow = e.target.parentElement.parentElement;
+            console.log(userRow);
+            const inputs = userRow.getElementsByTagName('input');
+            for (let e of inputs) {
+                e.removeAttribute('disabled')
+            }
 
-iconoCancelarEdit.addEventListener('click', (e) => {
-    const userRow = e.target.parentElement.parentElement;
-    console.log(userRow);
-    
-    const inputs = userRow.getElementsByTagName('input');
-    for (let e of inputs) {
-        e.setAttribute('disabled', 'disabled')
-    }
-    document.querySelector('#aceptar-user').style.display = "none";
-    iconoEliminarUser.style.display = "none";
-    iconoCancelarEdit.style.display = "none";
-    iconoEditarUser.style.display = "inline";
-})
+            iconoAceptarUser[i].style.display = "inherit";
+            iconoEliminarUser[i].style.display = "inline";
+            iconoCancelarEdit[i].style.display = "inline";
+            iconoEditarUser[i].style.display = "none"; 
+        });
+    });
 
-iconoVerPassword.addEventListener('click', () => {
-    if (inputPassword.type === 'password'){
-        inputPassword.type = "text";
-    } else {
-        inputPassword.type = "password";
-    }
-})
+    iconoCancelarEdit.forEach((element, i) => {
+        element.addEventListener('click', (e) => {
+            const userRow = e.target.parentElement.parentElement;
+            const inputs = userRow.getElementsByTagName('input');
+            for (let e of inputs) {
+                e.setAttribute('disabled', 'disabled')
+            }
 
-botonEnviar.addEventListener('click', () => {
+            iconoAceptarUser[i].style.display = "none";
+            iconoEliminarUser[i].style.display = "none";
+            iconoCancelarEdit[i].style.display = "none";
+            iconoEditarUser[i].style.display = "inline";
+        })
+    })
 
-    Notification.requestPermission((result) => {
-        console.log('enviando notificacion');
-
-        if (result === 'granted') {
-            navigator.serviceWorker.getRegistration().then((registration) => {
-                registration.showNotification('Vibration sample', {
-                    "body": 'Buzz buzz',
-                    "vibrate": [200, 100, 200, 100, 200, 100, 400],
-                    "tag": 'vibration-sample'
-                })
-            })
+    iconoVerPassword.addEventListener('click', () => {
+        if (inputPassword.type === 'password'){
+            inputPassword.type = "text";
         } else {
-            console.log('no enviada');
+            inputPassword.type = "password";
         }
     })
-})
+}
+
+/**
+ * Habilitar calendario si se trata de un evento al crear un POST
+ */
+
+if (document.URL.includes('nuevo-post')) {
+    const checkbox =  document.querySelector('#checkboxEvento');
+    const fechaPicker = document.querySelector('#fechaEvento');
+    if (document.URL.indexOf('nuevo-post') > 0 ) {
+        fechaPicker.disabled = true;
+        checkbox.addEventListener('change', () => {
+            toggleFechaPicker();
+        })
+    }
+
+    const toggleFechaPicker = () => {
+        checkbox.checked ? fechaPicker.disabled = false : fechaPicker.disabled = true;
+        fechaPicker.value = "";
+    }
+
+    botonEnviar.addEventListener('click', () => {
+        Notification.requestPermission((result) => {
+            console.log('enviando notificacion');
+
+            if (result === 'granted') {
+                navigator.serviceWorker.getRegistration().then((registration) => {
+                    registration.showNotification('Vibration sample', {
+                        "body": 'Buzz buzz',
+                        "vibrate": [200, 100, 200, 100, 200, 100, 400],
+                        "tag": 'vibration-sample'
+                    })
+                })
+            } else {
+                console.log('no enviada');
+            }
+        })
+    })
+}
+

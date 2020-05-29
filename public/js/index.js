@@ -1,23 +1,5 @@
 
 /**
- * Habilitar calendario si se trata de un evento al crear un POST
- */
-    const checkbox =  document.querySelector('#checkboxEvento');
-    const fechaPicker = document.querySelector('#fechaEvento');
-    if (document.URL.indexOf('nuevo-post') > 0 ) {
-        fechaPicker.disabled = true;
-        checkbox.addEventListener('change', () => {
-            toggleFechaPicker();
-        })
-    }
-
-    const toggleFechaPicker = () => {
-        checkbox.checked ? fechaPicker.disabled = false : fechaPicker.disabled = true;
-        fechaPicker.value = "";
-    }
-
-
-/**
  * Insertar el html del post formateado en /post
  */
     if ( window.location.pathname === '/' || document.URL.indexOf('/post') > 1 ) {
@@ -154,16 +136,44 @@ function subscribePush () {
         }
         const subscribeOptions = {
             userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array(
-                'BPTziTpT-gZTTmOP3AeYJ7E3vfHgG-Y8fgJvPhU5E4ARVnplrVcrBEGPWc0FMfZS1Vly4GT8okqmKIxuNHHb6Lg'
-            )
+            applicationServerKey: urlBase64ToUint8Array('BAFaA-0JT7HvgWDNkmsmAIwbSjWVwtjJROECaF6Dj7Wx2mumA32D7hVi2WpFscRuqFeje0ikE3lx0eOiJRAgE4c')
         };
         return registration.pushManager.subscribe(subscribeOptions);
     })
     .then(function (pushSubscription) {
         console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
+        sendSubToBackEnd(pushSubscription)
         return pushSubscription;
     })
+}
+
+//RECOJEMOS LA SUSCRIPCION Y LA ENVIAMOS AL SERVER
+// const subscriptionObject = {
+//     endpoint: pushSubscription.endpoint,
+//     keys: {
+//         p256dh: pushSubscription.getKeys('p256dh'),
+//         auth: pushSubscription.getKeys('auth')
+//     }
+// }
+
+function sendSubToBackEnd(subscription) {
+    return fetch('/api/save-subcription/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(subscription)
+    }).then(response => {
+        if(!response.ok) {
+            throw new Error('Bad status code from server.');
+        }
+        return response.json;
+    })
+    .then(responseData => {
+        if(!(responseData.data && responseData.data.success)) {
+            throw new Error('Bad response from server')
+        }
+    });
 }
 
 /**
@@ -213,14 +223,12 @@ function unsubscribePush () {
   }
 
 window.addEventListener('appinstalled', (evt) => {
-    // Log install to analytics
     console.log('INSTALL: Success');
     subscribePush();
   });
 
 
 
-  
 // function showNotifications() {
 //     Notification.requestPermission((result) => {
 //         if (result === 'granted') {

@@ -2,7 +2,7 @@
     .row
         .col
             form(action="/editarUsuario", method="post")
-                table.table.table-hover.table-striped
+                table.table.table-hover.table-striped.table-responsive
                     thead.thead-dark
                         tr
                             th(scope="col") ID 🔒
@@ -14,40 +14,42 @@
                     tbody
                         each user in usuarios
                             tr(id=`user-${user.id}`)
-                                td(scope="row")=user.id
-                                td
+                                td.align-middle(scope="row")=user.id
+                                td.align-middle
                                     input(type="text" name="nombre" disabled="disabled" value=user.nombre)
-                                td
+                                td.align-middle
                                     input(type="email" name="email" disabled="disabled" value=user.email)
-                                td.d-flex
+                                td.align-middle.d-flex
                                     input#passwdInput(type="password" name="passwd" disabled="disabled" value=user.passwd.substr(0,10) aria-describedby="basic-addon1")
                                     span#verPasswrd(title="Mostrar contraseña") 👁
-                                td
+                                td.align-middle
                                     select#role(name="role" required disabled="disabled")
                                         option(value="" disabled selected)=user.role
                                         option(value="writer") Escritor
                                         option(value="admin") Administrador
-                                td#botonera #[span#editar-user(title="Editar Usuario") ✏️] #[span#eliminar-user(title="Eliminar Usuario" style="display:none") 🚽] #[button#aceptar-user.btn-outline-success(type="Submit" style="display:none" title="Aceptar") ✔️] #[span#cancelar-edit(title="Cancelar Cambios" style="display:none") ❌]
+                                td.align-middle#botonera #[span#editar-user(title="Editar Usuario") ✏️] #[span#eliminar-user(title="Eliminar Usuario" style="display:none") 🚽] #[button#aceptar-user.btn-outline-success(type="Submit" style="display:none" title="Aceptar") ✔️] #[span#cancelar-edit(title="Cancelar Cambios" style="display:none") ❌]
     .row.align-items-center
-        .col-1
+        .col-12.d-block.d-md-none
+            h3 Solo puede usar este recursos desde un PC
+        .col-sm-12.d-none.d-md-block
+            h5 Agregar nuevo usuario
+        .col-sm-1.d-none.d-md-block
             button#btn-form-habilitar.btn.btn-outline-primary ➕
-        .col-11
+        .col-sm-11.d-none.d-md-block
             form(action="/registrar" method="post")
                 fieldset#form-registrar(disabled="disabled")
-                    table.table.table-hover
+                    table.table.table-hover.table-responsive
                         tbody
                             tr
-                                td
+                                td.align-middle
                                     input.form-control(type="text" required name="nombre" placeholder="Nombre")
-                                td
+                                td.align-middle
                                     input.form-control(type="email" required name="email")
-                                td
+                                td.align-middle
                                     input.form-control(type="password" required name="passwd")
-                                td
+                                td.align-middle
                                     select#role.form-control(name="role" required)
                                         option(value="" disabled selected) Elige un role
                                         option(value="writer") Escritor
                                         option(value="admin") Administrador
-                                td #[button.btn.btn-outline-success(type="Submit") ✔️]
-
-    script(src="/js/admin.js")
+                                td.align-middle #[button.btn.btn-outline-success(type="Submit") ✔️]

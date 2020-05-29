@@ -10,12 +10,24 @@ const       express = require('express'),
             db      = require('./config/database'),
             moment  = require('moment'),
         compression = require('compression'),
-            https   = require('https'),
-                fs  = require('fs'),
+            webpush = require('web-push'),
 
         // Models
             User    = require('./models/Users');
 
+
+    const vapidKeys = {
+        publicKey: 'BAFaA-0JT7HvgWDNkmsmAIwbSjWVwtjJROECaF6Dj7Wx2mumA32D7hVi2WpFscRuqFeje0ikE3lx0eOiJRAgE4c',
+        privateKey: 'O8m9TNAMzQHgveUKXgky5ea70EPjsRWVnpvvV-vM0Dw'
+    };
+
+    webpush.setVapidDetails(
+        'mailto:jesus.abril@gmail.com',
+        vapidKeys.publicKey,
+        vapidKeys.privateKey
+    )
+
+    
 //Variables locales
 require('dotenv').config({ path: 'variables.env' });
 
