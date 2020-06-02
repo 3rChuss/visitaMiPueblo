@@ -1,5 +1,6 @@
-const Post    = require('../models/Posts');
-const Users = require('../models/Users');
+const Post      = require('../models/Posts');
+const Users     = require('../models/Users');
+const webpush   = require('web-push');
 
 exports.mostrarPost = async (req, res) => {
     let titulo = "";
@@ -30,6 +31,7 @@ exports.paginaPost = (req, res) => {
 
 exports.nuevoPost = (req, res) => {
     let { titulo, subtitulo, img_url, es_evento, fecha_evento, html } = req.body;
+
     let fechaEvento = new Date(fecha_evento).toLocaleDateString();   
     // Comprobar los campos no oblgatorios
     if (!subtitulo) subtitulo = "";
@@ -45,6 +47,8 @@ exports.nuevoPost = (req, res) => {
         fecha_evento: fechaEvento,
         fecha_entrada: new Date().toLocaleDateString(),
     })
-    .then( resumen => res.redirect('/_admin?titulo=Entrada Enviada 👏🏼') )
+    .then( resumen => {
+        res.redirect('/_admin?titulo=Entrada Enviada 👏🏼') 
+    })
     .catch( err => console.log(err) )
 }

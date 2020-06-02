@@ -11,14 +11,15 @@ const       express = require('express'),
             moment  = require('moment'),
         compression = require('compression'),
             webpush = require('web-push'),
+            siteMap = require('express-sitemap-xml'),
 
         // Models
             User    = require('./models/Users');
 
 
     const vapidKeys = {
-        publicKey: 'BAFaA-0JT7HvgWDNkmsmAIwbSjWVwtjJROECaF6Dj7Wx2mumA32D7hVi2WpFscRuqFeje0ikE3lx0eOiJRAgE4c',
-        privateKey: 'O8m9TNAMzQHgveUKXgky5ea70EPjsRWVnpvvV-vM0Dw'
+        publicKey: process.env.PUBLIC_VAPID_KEY,
+        privateKey: process.env.PRIVATE_VAPID_KEY
     };
 
     webpush.setVapidDetails(
@@ -113,6 +114,13 @@ require('dotenv').config({ path: 'variables.env' });
     // Cargar las rutas
     app.use('/', routes());
     require('./config/passport')(passport, User)
+
+    // Creamos el siteamap
+    app.use(siteMap(() => {
+        return app._router.stack          // registered routes
+        .filter(r => r.route)    // take out all the middleware
+        .map(r => r.route.path)
+    }, 'https://deifontes.online/'));
 
 // Servidor
     const host = process.env.HOST || '0.0.0.0';

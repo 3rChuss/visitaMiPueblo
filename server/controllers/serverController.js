@@ -5,20 +5,17 @@ exports.saveSubscription = (req, res) => {
     if(!isValidSaveRequest(req, res)) {
         return;
     }
-    const guardar = Subscriptions.create({
-        content: JSON.stringify(req.body)
-    }).then(result => console.log(result));
 
     return saveSubToDataBase(req.body)
         .then((subscriptionId) => {
-            console.log('then esta dentro');
-            
             res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify({ data: { success: true } }));
+            console.log('[saveSubToDataBase] Subscripcion guardada en la base de datos');
+            //TriggerPushMsg(req.body,  )
         })
         .catch(err => {
             res.status(500);
-            res.setHeader('Content-Type', 'application/son');
+            res.setHeader('Content-Type', 'application/json');
             res.send(JSON.stringify({
                 error: {
                     id: 'unable-to-save-subscription',
@@ -28,35 +25,42 @@ exports.saveSubscription = (req, res) => {
         })
 }
 
+
 function saveSubToDataBase(subscription) {
     return Subscriptions.create({
-       content: subscription
-   }).then(result => {
-       return result;
+       content: JSON.stringify(subscription)
    })
 }
 
 exports.triggerPushMessage = (req, res) => {
+    const dataToSend = req.body;
     return getSubscriptionsFromDB()
         .then(subscriptions => {
+            console.log('[TriggerPushMessage] Subscripciones recividas desde la base de datos');
             let promiseChain = Promise.resolve();
 
             for (let i = 0; i < subscriptions.length; i++) {
                 const subscription = subscriptions[i];
                 promiseChain = promiseChain.then(() => {
-                    return triggerPushMsg(subscription, dataToSend)
+                    return triggerPushMsg(subscription, JSON.stringify(dataToSend))
                 });
             }
             return promiseChain;
         })
 }
 
+const getSubscriptionsFromDB = async () => {
+    return await Subscriptions.findAll();
+}
+
+
 const triggerPushMsg = (subscription, dataToSend) => {
-    return webpush.sendNotification(subscription, dataToSend)
+    console.log('[triggerPushMsg] Enviando las notificaciones subscritas');
+    return webpush.sendNotification(JSON.parse(subscription.content), dataToSend)
         .catch((err) => {
             if (err.statusCode === 404 || err.statusCode === 410) {
                 console.log('Subscripcion expirada o no valida, ' + err);
-                return deleteSubFromDB(subscription._id);
+                return deleteSubFromDB(subscription.id);
             } else {
                 throw err;
             }
@@ -71,7 +75,9 @@ async function deleteSubFromDB (subscriptionId) {
         }
     })
     .then(res => {
-        console.log(res);
+        if (res === 1){
+            console.log('[deleteSubFromDb] Subscripcion borrada porque no era valida');
+        }
     })
  }
 

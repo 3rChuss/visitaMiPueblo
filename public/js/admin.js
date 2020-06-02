@@ -61,6 +61,9 @@ if (document.URL.includes('panel-usuarios')) {
 if (document.URL.includes('nuevo-post')) {
     const checkbox =  document.querySelector('#checkboxEvento');
     const fechaPicker = document.querySelector('#fechaEvento');
+    const titulo = document.querySelector('#titulo');
+    const subtitulo = document.querySelector('#subtitulo');
+
     if (document.URL.indexOf('nuevo-post') > 0 ) {
         fechaPicker.disabled = true;
         checkbox.addEventListener('change', () => {
@@ -74,21 +77,16 @@ if (document.URL.includes('nuevo-post')) {
     }
 
     botonEnviar.addEventListener('click', () => {
-        Notification.requestPermission((result) => {
-            console.log('enviando notificacion');
-
-            if (result === 'granted') {
-                navigator.serviceWorker.getRegistration().then((registration) => {
-                    registration.showNotification('Vibration sample', {
-                        "body": 'Buzz buzz',
-                        "vibrate": [200, 100, 200, 100, 200, 100, 400],
-                        "tag": 'vibration-sample'
-                    })
-                })
-            } else {
-                console.log('no enviada');
+        
+        fetch('/api/trigger-push-msg/', {
+            method: 'POST',
+            body: JSON.stringify({
+                titulo: titulo.value,
+                subtitulo: subtitulo.value
+            }),
+            headers: {
+                'Content-Type': 'application/json'
             }
         })
     })
 }
-

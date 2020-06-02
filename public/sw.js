@@ -64,22 +64,20 @@ self.addEventListener("install", function(event) {
   };
 
   self.addEventListener('push', function (e) {
-    console.log('[Service Worker] Push recivido');
-    console.log(`[Service Worker] Datos del push: ${e.data.text()}`);
-
-    const titulo = 'Pimera prueba';
+    let { titulo, subtitulo } = e.data.json();
     const options = {
-      body: 'Funciona!',
-      icon: '/img/logoDeifontes.png'
+      body: titulo,
+      icon: '/img/logoDeifontes.png',
+      badge: '🔰',
+      vibrate: [200, 100, 200, 100, 200, 100, 200],
+      data: subtitulo
     }
     
-    const notificationPromise = self.registration.showNotification(titulo, options);
+    const notificationPromise = self.registration.showNotification('Nueva Noticia!', options);
     e.waitUntil(notificationPromise);
-    })
+  })
 
     self.addEventListener('notificationclick', function(event) {
-      console.log('[Service Worker] Notification click Received.');
-    
       event.notification.close();
     
       event.waitUntil(

@@ -45,7 +45,7 @@ module.exports = function() {
 
     //Push Notifications
     router.post('/api/save-subcription/', serverC.saveSubscription);
-    router.post('/api/trigger-push-msg/', serverC.triggerPushMessage)
+    router.post('/api/trigger-push-msg/', serverC.triggerPushMessage);
 
     return router;
 }

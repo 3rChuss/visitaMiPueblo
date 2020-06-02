@@ -3,12 +3,17 @@
  * Insertar el html del post formateado en /post
  */
     if ( window.location.pathname === '/' || document.URL.indexOf('/post') > 1 ) {
-        const div = document.createElement('p');
-        const postHtml = document.querySelector('#post');
-        const padre = document.querySelector('#post-html');
-            div.innerHTML = postHtml.textContent;
-            padre.appendChild(div);
-            postHtml.remove();
+        const postHtml = document.querySelectorAll('#post');
+        const padre = document.querySelectorAll('#post-html');
+        for (let i = 0; i < postHtml.length; i++) {
+            const post = postHtml[i];
+            const div = document.createElement('p');
+            div.innerHTML = post.textContent;
+            div.setAttribute('id', 'formatPost');
+            post.remove();
+            padre[i].appendChild(div)
+        }
+
     }
 
 
@@ -106,28 +111,9 @@ window.addEventListener('beforeinstallprompt', (e) => {
         })
     })
 })
+// Notificaciones
 
-function askPermission() {
-    if ('PushManager' in window) {
-        return new Promise(function(resolve, reject) {
-            const permissionResult = Notification.requestPermission(function(result) {
-                resolve(result);
-            });
-            if (permissionResult) {
-                permissionResult.then(resolve, reject);
-            }
-         })
-        .then(function(permissionResult) {
-            if (permissionResult !== 'granted') {
-                throw new Error('Sin permiso para notificaciones');
-            }
-        });
-    } else {
-        //No compatible
-        return;
-    }
-  }
-
+const PUBLIC_VAPID_KEY = 'BP0ZBUA0FACIyUNfB9wE_ER2NoWcsex_E2eyWA9gSGtLHEtwQuw-g8nOtAYtZ2tjF1Y9Fdl4jlLWrxTpLWcTah0';
 function subscribePush () {
     return navigator.serviceWorker.ready.then(function(registration) {
         if (!registration.pushManager) {
@@ -136,25 +122,15 @@ function subscribePush () {
         }
         const subscribeOptions = {
             userVisibleOnly: true,
-            applicationServerKey: urlBase64ToUint8Array('BAFaA-0JT7HvgWDNkmsmAIwbSjWVwtjJROECaF6Dj7Wx2mumA32D7hVi2WpFscRuqFeje0ikE3lx0eOiJRAgE4c')
+            applicationServerKey: urlBase64ToUint8Array(PUBLIC_VAPID_KEY)
         };
         return registration.pushManager.subscribe(subscribeOptions);
     })
     .then(function (pushSubscription) {
-        console.log('Received PushSubscription: ', JSON.stringify(pushSubscription));
         sendSubToBackEnd(pushSubscription)
         return pushSubscription;
     })
 }
-
-//RECOJEMOS LA SUSCRIPCION Y LA ENVIAMOS AL SERVER
-// const subscriptionObject = {
-//     endpoint: pushSubscription.endpoint,
-//     keys: {
-//         p256dh: pushSubscription.getKeys('p256dh'),
-//         auth: pushSubscription.getKeys('auth')
-//     }
-// }
 
 function sendSubToBackEnd(subscription) {
     return fetch('/api/save-subcription/', {
@@ -167,7 +143,7 @@ function sendSubToBackEnd(subscription) {
         if(!response.ok) {
             throw new Error('Bad status code from server.');
         }
-        return response.json;
+        return response.json();
     })
     .then(responseData => {
         if(!(responseData.data && responseData.data.success)) {
@@ -205,11 +181,9 @@ function unsubscribePush () {
                     console.log('no se ha podido eliminar el registro push')
                     return;
                 }
-
                 subscription.unsubscribe()
                 .then( () => {
                     console.info('Push notification unsubscribed.');
-                    console.log(subscription);
                     changePushStatus(false);
                 })
                 .catch(function (error) {
@@ -222,23 +196,8 @@ function unsubscribePush () {
         })
   }
 
+
 window.addEventListener('appinstalled', (evt) => {
     console.log('INSTALL: Success');
     subscribePush();
   });
-
-
-
-// function showNotifications() {
-//     Notification.requestPermission((result) => {
-//         if (result === 'granted') {
-//             navigator.serviceWorker.getRegistration().then((registration) => {
-//                 registration.showNotification('Vibration sample', {
-//                     "body": 'Buzz buzz',
-//                     "vibrate": [200, 100, 200, 100, 200, 100, 400],
-//                     "tag": 'vibration-sample'
-//                 })
-//             })
-//         }
-//     })
-// }

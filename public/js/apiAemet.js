@@ -3,7 +3,6 @@
 const api_key = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzcmNodXNzQGdtYWlsLmNvbSIsImp0aSI6ImM0MjU2ODU3LWViZmMtNDBhNC1iOGQxLTg5MDI5YmRlODAyMSIsImlzcyI6IkFFTUVUIiwiaWF0IjoxNTg4MTUwOTQ2LCJ1c2VySWQiOiJjNDI1Njg1Ny1lYmZjLTQwYTQtYjhkMS04OTAyOWJkZTgwMjEiLCJyb2xlIjoiIn0.Jp8C2P-zxJqxN-hmtow0O9fLNyyWxu30xUk-J0AewJY';
 
 function cargarDatosAemet() {
-
     const url = `https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/18066?api_key=${api_key}`;
     let xhr = new XMLHttpRequest();
     xhr.withCredentials = true;
@@ -11,10 +10,13 @@ function cargarDatosAemet() {
         if (this.readyState === 4) {
             obtenerDatos(JSON.parse(xhr.responseText).datos)
                 .then(datos => mostrarTiempo(datos.datos[0]))
-                .catch(err => console.log(err))
-                
-        }         
+                .catch(err => console.log(err))  
+        }
     })
+    xhr.onerror = (err) => {
+        tempActualDiv.innerHTML = "<p style='font-size:11px;'> No se puede conectar </p>";
+        imagen.style.opacity = 1;
+    }
     xhr.open('GET', url);
     xhr.setRequestHeader('cache-control', 'no-cache')
     xhr.send(null)
