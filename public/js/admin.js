@@ -58,19 +58,17 @@ if (document.URL.includes('panel-usuarios')) {
  * Habilitar calendario si se trata de un evento al crear un POST
  */
 
-if (document.URL.includes('nuevo-post')) {
+if (document.URL.includes('nuevo-post') || document.URL.includes('/edit')) {
     const checkbox =  document.querySelector('#checkboxEvento');
     const fechaPicker = document.querySelector('#fechaEvento');
     const titulo = document.querySelector('#titulo');
     const subtitulo = document.querySelector('#subtitulo');
 
-    if (document.URL.indexOf('nuevo-post') > 0 ) {
-        fechaPicker.disabled = true;
-        checkbox.addEventListener('change', () => {
-            toggleFechaPicker();
-        })
-    }
-
+    fechaPicker.disabled = true;
+    checkbox.addEventListener('change', () => {
+        toggleFechaPicker();
+    })
+    
     const toggleFechaPicker = () => {
         checkbox.checked ? fechaPicker.disabled = false : fechaPicker.disabled = true;
         fechaPicker.value = "";
@@ -89,4 +87,19 @@ if (document.URL.includes('nuevo-post')) {
             }
         })
     })
+
+    tinymce.init({
+        selector: '#html',
+        height: 500,
+        menubar: false,
+        plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code',
+            'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+        'bold italic backcolor | alignleft aligncenter ' +
+        'alignright alignjustify | bullist numlist outdent indent | ' +
+        'removeformat | help',
+      });
 }

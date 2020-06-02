@@ -21,8 +21,10 @@ module.exports = function() {
     // Posts
     router.get('/', inicioC.mostrarPosts);
     router.get('/post/:id', postsC.mostrarPost);
+    router.get('/post/:id/edit', Auth.isLoggedIn, postsC.editarPost);
     router.get('/nuevo-post', postsC.paginaPost);
     router.post('/nuevo-post', postsC.nuevoPost);
+    router.post('/post/:id/guardar-post', Auth.isLoggedIn, postsC.guardarEditPost);
 
     // Páginas estáticas
     router.get('/politica-privacidad', paginasC.paginaPoliticaPrivacidad);

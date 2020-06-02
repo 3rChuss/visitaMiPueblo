@@ -28,7 +28,8 @@ const backToTop = document.querySelector('#back-to-top');
     if ( document.location.pathname === '/')
         cargarDatosAemet();
     
-    loginBtn.addEventListener('click', mostrarForm);
+    if (loginBtn != null)
+        loginBtn.addEventListener('click', mostrarForm);
     window.onscroll = function() {this.scrollToTop()}
 
     

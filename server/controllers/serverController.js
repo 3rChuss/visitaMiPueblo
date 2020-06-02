@@ -42,7 +42,7 @@ exports.triggerPushMessage = (req, res) => {
             for (let i = 0; i < subscriptions.length; i++) {
                 const subscription = subscriptions[i];
                 promiseChain = promiseChain.then(() => {
-                    return triggerPushMsg(subscription, JSON.stringify(dataToSend))
+                    return sendPushNotification(subscription, JSON.stringify(dataToSend))
                 });
             }
             return promiseChain;
@@ -54,8 +54,8 @@ const getSubscriptionsFromDB = async () => {
 }
 
 
-const triggerPushMsg = (subscription, dataToSend) => {
-    console.log('[triggerPushMsg] Enviando las notificaciones subscritas');
+const sendPushNotification = (subscription, dataToSend) => {
+    console.log('[sendPushNotification] Enviando las notificaciones subscritas');
     return webpush.sendNotification(JSON.parse(subscription.content), dataToSend)
         .catch((err) => {
             if (err.statusCode === 404 || err.statusCode === 410) {

@@ -298,7 +298,7 @@ article {
 }
 .img-post {
     width: 100%;
-    max-height: 350px;
+    max-height: 500px;
     position: relative;
     overflow: hidden;
     margin-bottom: 1.2rem;
@@ -312,6 +312,13 @@ article {
 }
 #post-page .publicidad {
     margin-top: 1.5rem;
+}
+
+.post-admin span {
+    margin-right: 30px;
+}
+.post-admin {
+    background: rgb(251 255 0 / 50%);
 }
 
 @media (max-width: 540px){
@@ -535,7 +542,7 @@ article {
     margin-top: 5px;
     text-transform: uppercase;
 }
-#botonera, #verPasswrd {
+#botonera span, #verPasswrd {
     cursor: pointer;
 }
 /* =========================================================== OTHERS */
