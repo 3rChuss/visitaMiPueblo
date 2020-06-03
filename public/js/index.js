@@ -14,8 +14,24 @@
             padre[i].appendChild(div)
         }
 
+        const eleminarPost = document.querySelector('#eliminar-post');
+        if (eleminarPost != null){
+            eleminarPost.addEventListener('click', () => {
+                let respuesta = confirm('🚫¿Estas seguro de querer borrar este post?🚫');
+                if (respuesta)
+                    eliminarPost();
+            })
+        }
+
     }
 
+
+async function eliminarPost() {
+    await fetch('/api/eliminar-post/')
+        .then(respuesta => {
+            console.log(respuesta)
+        })
+  }
 
 const loginForm = document.querySelector('#loginForm');
 const loginBtn = document.querySelector('#loginBtn');

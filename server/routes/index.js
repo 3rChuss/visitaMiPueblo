@@ -22,9 +22,9 @@ module.exports = function() {
     router.get('/', inicioC.mostrarPosts);
     router.get('/post/:id', postsC.mostrarPost);
     router.get('/post/:id/edit', Auth.isLoggedIn, postsC.editarPost);
-    router.get('/nuevo-post', postsC.paginaPost);
-    router.post('/nuevo-post', postsC.nuevoPost);
+    router.post('/api/nuevo-post', postsC.nuevoPost);
     router.post('/post/:id/guardar-post', Auth.isLoggedIn, postsC.guardarEditPost);
+    router.post('/api/eliminar-post/', Auth.isLoggedIn, postsC.eliminarPost);
 
     // Páginas estáticas
     router.get('/politica-privacidad', paginasC.paginaPoliticaPrivacidad);

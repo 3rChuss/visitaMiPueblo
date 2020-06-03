@@ -11,7 +11,10 @@ const       express = require('express'),
             moment  = require('moment'),
         compression = require('compression'),
             webpush = require('web-push'),
-            siteMap = require('express-sitemap-xml'),
+            siteMap = require('express-sitemap'),
+
+            https   = require('https'),
+            fs      = require('fs'),
 
         // Models
             User    = require('./models/Users');
@@ -42,8 +45,9 @@ require('dotenv').config({ path: 'variables.env' });
     app.set('view engine', 'pug');
     // Views
     app.set('views', path.join(__dirname, './views'));
-    const cacheTime = 86400000 * 30;
+
     // Archivos estaticos
+    const cacheTime = 86400000 * 30;
     app.use(express.static('public', {
         etag: true, // Just being explicit about the default.
         lastModified: true,  // Just being explicit about the default.
@@ -80,7 +84,7 @@ require('dotenv').config({ path: 'variables.env' });
     app.use(passport.initialize());
     app.use(passport.session());
 
-    // Inicializamos Flahs
+    // Inicializamos Flash
     app.use(flash());
     // Creamos la variable para el sitio web
     app.locals.titulo =  config.nombreSitio;
@@ -116,16 +120,53 @@ require('dotenv').config({ path: 'variables.env' });
     require('./config/passport')(passport, User)
 
     // Creamos el siteamap
-    app.use(siteMap(() => {
-        return app._router.stack          // registered routes
-        .filter(r => r.route)    // take out all the middleware
-        .map(r => r.route.path)
-    }, 'https://deifontes.online/'));
+    let map = siteMap({
+        sitemap: 'public/sitemap.xml',
+        robots: 'public/robots.txt',
+        generate: routes(),
+        sitemapSubmission: '/sitemap.xml',
+        url: 'www.deifontes.info',
+        route: {
+            '/': {
+                lastmod: '2020-06-03',
+                changefreq: 'always',
+                priority: 1.0,
+            },
+            '/deifontes': {
+                lastmod: '2020-06-03',
+                changefreq: 'once a year',
+            },
+            '/que-ver': {
+                lastmod: '2020-06-03',
+                changefreq: 'never',
+            },
+            '/fiestas': {
+                lastmod: '2020-06-03',
+                changefreq: 'never',
+            },
+            '/_admin':{
+                disallow: true,
+                hide: true,
+            },
+            '/api/':{
+                disallow: true,
+                hide: true,
+            }
+        }
+    }).toFile();
+
 
 // Servidor
     const host = process.env.HOST || '0.0.0.0';
     const port = process.env.PORT || 3000;
 
-    app.listen(port, host, () => {
+    // app.listen(port, host, () => {
+    //     console.log('Servidor funcionando')
+    // });
+    let options = {
+        key: fs.readFileSync('server/private_key.key'),
+        cert: fs.readFileSync('server/ssl_certificate.cer')
+    }
+    https.createServer(options, app).listen(port, host, () => {
         console.log('Servidor funcionando')
-    });
+    })

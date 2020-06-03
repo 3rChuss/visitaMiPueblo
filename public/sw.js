@@ -81,6 +81,6 @@ self.addEventListener("install", function(event) {
       event.notification.close();
     
       event.waitUntil(
-        clients.openWindow('https://deifontes.online')
+        clients.openWindow('https://deifontes.info')
       );
     });

@@ -1,6 +1,5 @@
 const Post      = require('../models/Posts');
 const Users     = require('../models/Users');
-const webpush   = require('web-push');
 
 exports.mostrarPost = async (req, res) => {
     let titulo = "";
@@ -67,6 +66,11 @@ exports.guardarEditPost = async (req, res) => {
         .then(resultado => {
             res.redirect('/post/'+req.params.id)
         })
+}
+
+exports.eliminarPost = (req, res) => {
+    console.log('[eliminarPost] a entrado');
+    console.log(req.url);
 }
 
 const getPost = async (req) => {
