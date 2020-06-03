@@ -24,7 +24,7 @@ module.exports = function() {
     router.get('/post/:id/edit', Auth.isLoggedIn, postsC.editarPost);
     router.post('/api/nuevo-post', postsC.nuevoPost);
     router.post('/post/:id/guardar-post', Auth.isLoggedIn, postsC.guardarEditPost);
-    router.post('/api/eliminar-post/', Auth.isLoggedIn, postsC.eliminarPost);
+    router.get('/api/eliminar-post/', Auth.isLoggedIn, postsC.eliminarPost);
 
     // Páginas estáticas
     router.get('/politica-privacidad', paginasC.paginaPoliticaPrivacidad);

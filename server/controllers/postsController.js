@@ -68,9 +68,17 @@ exports.guardarEditPost = async (req, res) => {
         })
 }
 
-exports.eliminarPost = (req, res) => {
-    console.log('[eliminarPost] a entrado');
-    console.log(req.url);
+exports.eliminarPost = async (req, res) => {
+    const eliminar = await eliminaPost(req.query.id)
+        .then(resultado => res.redirect('/'))
+}
+
+const eliminaPost = async (id) => {
+    return postAEliminar = await Post.destroy({
+        where: {
+            id
+            }
+        })
 }
 
 const getPost = async (req) => {

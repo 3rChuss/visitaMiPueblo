@@ -14,24 +14,19 @@
             padre[i].appendChild(div)
         }
 
-        const eleminarPost = document.querySelector('#eliminar-post');
-        if (eleminarPost != null){
-            eleminarPost.addEventListener('click', () => {
+        const btnEleminarPost = document.querySelector('#eliminar-post');
+        const aEliminar = document.querySelector('#aeliminar');
+        if (btnEleminarPost != null){
+            let id = aEliminar.getAttribute('href');
+            btnEleminarPost.addEventListener('click', (e) => {
                 let respuesta = confirm('🚫¿Estas seguro de querer borrar este post?🚫');
+                e.preventDefault();
                 if (respuesta)
-                    eliminarPost();
+                    window.location.href="/api/eliminar-post?id="+id;
             })
         }
 
     }
-
-
-async function eliminarPost() {
-    await fetch('/api/eliminar-post/')
-        .then(respuesta => {
-            console.log(respuesta)
-        })
-  }
 
 const loginForm = document.querySelector('#loginForm');
 const loginBtn = document.querySelector('#loginBtn');

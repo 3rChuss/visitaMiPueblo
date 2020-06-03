@@ -26,7 +26,7 @@ block contenido
                             if usuario.role === 'admin'
                                 .post-admin#botonera 
                                     span#editar-post(title="Editar Post") #[a(href=`/post/${id}/edit`) ✏️ Editar ]
-                                    span#eliminar-post(title="Eliminar Post") 🚽 Eliminar
+                                    span#eliminar-post(title="Eliminar Post") #[a#aeliminar(href=`${id}`) 🚽 Eliminar ]
 
 
             aside.col-sm-4.publicidad(role="contentInfo")
