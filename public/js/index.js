@@ -31,7 +31,7 @@
 // Slider
     let slideIndex = 0;
     function slider() {
-        let imgs = document.querySelectorAll('.slider-item');
+        let imgs = document.querySelectorAll('.carousel-item');
         for(let i = 0; i < imgs.length; i++){
             imgs[i].style.display = 'none';
         }
