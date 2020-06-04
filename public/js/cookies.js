@@ -16,24 +16,15 @@ function setCookies(){
     let html = 
         `
         <!-- COOKIES NECESARIAS AQUÍ -->
-        <!-- Global site tag (gtag.js) - Google Analytics  -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N17K6VN76M"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-N17K6VN76M');
-        </script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMYHTLCXG6"></script>
-            <script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7XS75ZMTF"></script>
+        <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-MMYHTLCXG6');
-            </script>
+            gtag('config', 'G-B7XS75ZMTF');
+        </script>
         `;
 
     if (cookiesInnecesarias.checked){
@@ -69,5 +60,7 @@ function checkCookies() {
     let cookies = document.cookie;
     if (cookies == '') {
         muestraCookieBox();
+    } else {
+        setCookies();
     }
 }
