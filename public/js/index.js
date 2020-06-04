@@ -111,6 +111,8 @@ async function registerSW() {
             alert('ServiceWorker a fallado'); 
             console.log(err)
         }
+    } else {
+        subscribePush();
     }
 }
 

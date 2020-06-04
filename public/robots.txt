@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: 
+Sitemap: http://deifontes.herokuapp.com/sitemap.xml
