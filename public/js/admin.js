@@ -98,7 +98,7 @@ if (document.URL.includes('nuevo-post') || document.URL.includes('/edit')) {
             'insertdatetime media table paste code help wordcount'
         ],
         toolbar: 'undo redo | formatselect | ' +
-        'bold italic backcolor | alignleft aligncenter ' +
+        'bold italic backcolor | media | alignleft aligncenter ' +
         'alignright alignjustify | bullist numlist outdent indent | ' +
         'removeformat | help',
       });
