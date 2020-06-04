@@ -15,7 +15,7 @@ aceptar.addEventListener('click', () => {
 function setCookies(){
     let html = 
         `
-        <!-- COOKIES NECESARIAS AQUÍ <<<<---------->>>> -->
+        <!-- COOKIES NECESARIAS AQUÍ -->
         <!-- Global site tag (gtag.js) - Google Analytics  -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-N17K6VN76M"></script>
         <script>
@@ -39,10 +39,11 @@ function setCookies(){
     if (cookiesInnecesarias.checked){
         html += 
             `<script>
-                <!-- COOKIES INNECESARIAS AQUÍ <<<<---------->>>> -->
+                <!-- COOKIES INNECESARIAS AQUÍ -->
             </script>`;
     }
-    document.head.innerHTML += html;
+    document.getElementById('scripts-here').innerHTML += html;
+    //document.head.innerHTML += html;
 }
 
 function muestraCookieBox() {

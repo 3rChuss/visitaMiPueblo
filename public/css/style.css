@@ -876,3 +876,7 @@ footer .nav a,
 .back-to-top i {
     margin: 0;
 }
+.back-to-top:hover {
+    background-color: var(--color-principal);
+    color: #fff;
+}
