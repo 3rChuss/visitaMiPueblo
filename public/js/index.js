@@ -33,15 +33,14 @@
     function slider() {
         let imgs = document.querySelectorAll('.slider-item');
         for(let i = 0; i < imgs.length; i++){
-            //imgs[i].classList.remove('active');
             imgs[i].style.display = 'none';
         }
         slideIndex++;
         if (slideIndex > imgs.length) slideIndex = 1;
-        //imgs[slideIndex-1].classList.add('active');
         imgs[slideIndex-1].style.display = 'block';
-        setTimeout(slider, 5000);
+        setTimeout(slider, 6000);
     }
+    slider();
 
 const loginForm = document.querySelector('#loginForm');
 const loginBtn = document.querySelector('#loginBtn');
@@ -52,7 +51,6 @@ const backToTop = document.querySelector('#back-to-top');
   */
 
  document.addEventListener('DOMContentLoaded', (e) => {
-     slider();
     if ( document.location.pathname === '/')
         cargarDatosAemet();
     

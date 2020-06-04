@@ -6,8 +6,9 @@ section
                     .carousel-inner
                         .slider-item.fadeSlider
                                 img.d-block.w-100(src='/img/palacio_slider.jpg' alt=`Deifontes turismo, imágenes`)
-                        each img in sliderImgs
-                            .slider-item.fadeSlider
-                                img.d-block.w-100(src=`/img/slider/${img}` alt=`Deifontes turismo, imágenes`)
+                        if sliderImgs
+                            each img in sliderImgs
+                                .slider-item.fadeSlider
+                                    img.d-block.w-100(src=`/img/slider/${img}` alt=`Deifontes turismo, imágenes`)
             .col-md-8.my-md-auto
                 h1.text-white.slider-text= pagina

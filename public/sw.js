@@ -12,7 +12,7 @@ self.addEventListener("install", function(event) {
             "/que-ver",
             "/deifontes",
             "/deifontes/",
-            "../img/palacio.webp",
+            "../img/palacio_slider.jpg",
             "/js/admin.js",
             "/js/apiAemet.js",
             "/js/apiCenso.js",
