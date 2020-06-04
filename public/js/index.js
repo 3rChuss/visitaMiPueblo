@@ -28,14 +28,31 @@
 
     }
 
+// Slider
+    let slideIndex = 0;
+    function slider() {
+        let imgs = document.querySelectorAll('.slider-item');
+        for(let i = 0; i < imgs.length; i++){
+            //imgs[i].classList.remove('active');
+            imgs[i].style.display = 'none';
+        }
+        slideIndex++;
+        if (slideIndex > imgs.length) slideIndex = 1;
+        //imgs[slideIndex-1].classList.add('active');
+        imgs[slideIndex-1].style.display = 'block';
+        setTimeout(slider, 5000);
+    }
+
 const loginForm = document.querySelector('#loginForm');
 const loginBtn = document.querySelector('#loginBtn');
 const backToTop = document.querySelector('#back-to-top');
+
 /**
   * Events Listeners
   */
 
  document.addEventListener('DOMContentLoaded', (e) => {
+     slider();
     if ( document.location.pathname === '/')
         cargarDatosAemet();
     
@@ -123,8 +140,9 @@ window.addEventListener('beforeinstallprompt', (e) => {
         })
     })
 })
-// Notificaciones
 
+
+// Notificaciones
 const PUBLIC_VAPID_KEY = 'BP0ZBUA0FACIyUNfB9wE_ER2NoWcsex_E2eyWA9gSGtLHEtwQuw-g8nOtAYtZ2tjF1Y9Fdl4jlLWrxTpLWcTah0';
 function subscribePush () {
     return navigator.serviceWorker.ready.then(function(registration) {

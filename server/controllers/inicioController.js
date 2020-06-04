@@ -1,6 +1,9 @@
-const Post  = require('../models/Posts');
-const Users = require('../models/Users');
-const { Op } = require("sequelize");
+const Post  = require('../models/Posts'),
+     Users  = require('../models/Users'),
+     { Op } = require("sequelize"),
+     path   = require('path'),
+     fs     = require('fs');
+
 
 exports.mostrarPosts = async (req, res) => {
     //Relacionamos las tablas
@@ -8,8 +11,8 @@ exports.mostrarPosts = async (req, res) => {
     Post.belongsTo(Users, { foreignKey: 'id_autor'});
     let filtro = '';
     let entradas = '';
-    //Si viene un query
-    
+
+    //Si viene un query para filtrar los posts
     if (req.query.f) {
         entradas = await Post.findAll({
             order: [ ['id', 'DESC'] ],
@@ -45,11 +48,36 @@ exports.mostrarPosts = async (req, res) => {
             }
         })
 
-    res.render('index', {
-        pagina: "Bienvenidos a Deifontes",
-        entradas,
-        eventos,
-        usuario: req.user,
-        filtro
+    //Inicializamos el slider con las fotos que estén en la carpeta
+    let imagenes = getSliderImgs()
+    imagenes.then(sliderImgs => {
+        res.render('index', {
+            pagina: "Bienvenidos a Deifontes",
+            entradas,
+            eventos,
+            usuario: req.user,
+            filtro,
+            sliderImgs
+        })
+    }).catch(err => {
+        console.log('[InicioController] La carpeta Slider no se encuetra');
+        //Renderizamos sin imagenes
+        res.render('index', {
+            pagina: "Bienvenidos a Deifontes",
+            entradas,
+            eventos,
+            usuario: req.user,
+            filtro
+        })
+    })
+}
+
+const getSliderImgs = () => {
+    let dir = path.join(__dirname, '../../public/img/slider/');
+    return new Promise((resolve, reject) => {
+        fs.readdir(dir, (err, imgs) => {
+            if (err) reject(err)
+            else resolve(imgs)
+        })
     })
 }
