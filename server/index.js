@@ -125,7 +125,7 @@ require('dotenv').config({ path: 'variables.env' });
         robots: 'public/robots.txt',
         generate: routes(),
         sitemapSubmission: '/sitemap.xml',
-        url: 'www.deifontes.info',
+        url: 'deifontes.herokuapp.com',
         route: {
             '/': {
                 lastmod: '2020-06-03',

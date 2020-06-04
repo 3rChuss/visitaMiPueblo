@@ -76,6 +76,7 @@ exports.mostrarPosts = async (req, res) => {
     })
 }
 
+//Leemos el directorio y devolvemos la promesa.
 const getSliderImgs = () => {
     let dir = path.join(__dirname, '../../public/img/slider/');
     return new Promise((resolve, reject) => {
