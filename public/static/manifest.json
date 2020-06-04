@@ -5,7 +5,7 @@
     "background_color": "#f1f1f1",
     "display": "minimal-ui",
     "scope": "../",
-    "start_url": "./?mode=standalone",
+    "start_url": "/?mode=standalone",
     "description": "Periódico local para pequeñas localidades",
     "orientation": "portrait",
     "icons": [
