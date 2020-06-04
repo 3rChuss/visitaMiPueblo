@@ -6,9 +6,11 @@ section
                     .carousel-inner
                         .carousel-item.fadeSlider
                                 img.d-block.img-fluid(src='/img/palacio_slider.jpg' alt=`Deifontes turismo, imágenes`)
-                        if sliderImgs
-                            each img in sliderImgs
+                        if imgs
+                            each img in imgs
                                 .carousel-item.fadeSlider
-                                    img.d-block.img-fluid(src=`/img/slider/${img}` alt=`Deifontes turismo, imágenes`)
+                                    picture
+                                        source(srcset=`/img/slider/${img}.webp`, type="image/webp")
+                                        img.d-block.img-fluid(src=`/img/slider/${img}.jpg` alt=`Deifontes turismo, imágenes`)
             .col-md-8.my-md-auto
                 h1.text-white.slider-text= pagina

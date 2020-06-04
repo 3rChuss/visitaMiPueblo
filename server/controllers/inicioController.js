@@ -51,13 +51,17 @@ exports.mostrarPosts = async (req, res) => {
     //Inicializamos el slider con las fotos que estén en la carpeta
     let imagenes = getSliderImgs()
     imagenes.then(sliderImgs => {
+        
+        //Obtenemos los nombres y borramos los duplicados
+        let imgs = [... new Set(sliderImgs.map(img => img.replace(/\.[^/.]+$/, "")))];
+        
         res.render('index', {
             pagina: "Bienvenidos a Deifontes",
             entradas,
             eventos,
             usuario: req.user,
             filtro,
-            sliderImgs
+            imgs
         })
     }).catch(err => {
         console.log('[InicioController] La carpeta Slider no se encuetra');
