@@ -15,26 +15,24 @@ aceptar.addEventListener('click', () => {
 function setCookies(){
     let html = 
         `
-        <!-- COOKIES NECESARIAS AQUÍ -->
         <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7XS75ZMTF"></script>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2691D74HQ0"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-B7XS75ZMTF');
+            gtag('config', 'G-2691D74HQ0');
         </script>
         `;
-
     if (cookiesInnecesarias.checked){
         html += 
             `<script>
                 <!-- COOKIES INNECESARIAS AQUÍ -->
             </script>`;
     }
-    document.getElementById('scripts-here').innerHTML += html;
-    //document.head.innerHTML += html;
+    //document.getElementById('scripts-here').innerHTML += html;
+    document.head.innerHTML += html;
 }
 
 function muestraCookieBox() {
@@ -58,9 +56,6 @@ function setCookieVisto() {
 }
 function checkCookies() {
     let cookies = document.cookie;
-    if (cookies == '') {
-        muestraCookieBox();
-    } else {
-        setCookies();
-    }
+    if (cookies == '') muestraCookieBox();
+    else setCookies();
 }

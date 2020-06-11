@@ -117,29 +117,29 @@ async function registerSW() {
 }
 
 // Muestra el mensaje de A2HS
-let deferredPrompt;
+// let deferredPrompt;
 const addBtn = document.querySelector('#bannerInstalar');
 addBtn.style.display = 'none';
 
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
+// window.addEventListener('beforeinstallprompt', (e) => {
+//     e.preventDefault();
+//     deferredPrompt = e;
 
-    addBtn.style.display = "flex";
-    addBtn.addEventListener('click', (e) => {
-        addBtn.style.display = "none";
+//     addBtn.style.display = "flex";
+//     addBtn.addEventListener('click', (e) => {
+//         addBtn.style.display = "none";
 
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choise) => {
-            if (choise.outcome === "accepted") {
-                console.log('Aceptado A2HS');
-            } else {
-                console.log('No aceptado A2HS');
-            }
-            deferredPrompt = null;
-        })
-    })
-})
+//         deferredPrompt.prompt();
+//         deferredPrompt.userChoice.then((choise) => {
+//             if (choise.outcome === "accepted") {
+//                 console.log('Aceptado A2HS');
+//             } else {
+//                 console.log('No aceptado A2HS');
+//             }
+//             deferredPrompt = null;
+//         })
+//     })
+// })
 
 
 // Notificaciones

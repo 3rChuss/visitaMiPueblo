@@ -117,6 +117,9 @@ require('dotenv').config({ path: 'variables.env' });
     
     // Cargar las rutas
     app.use('/', routes());
+    app.use(function (req, res) {
+        res.status(404).redirect('/');
+    });
     require('./config/passport')(passport, User)
 
     // Creamos el siteamap
